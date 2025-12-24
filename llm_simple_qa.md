@@ -179,3 +179,20 @@ Will:
 
 > **IANVS compares algorithms, not models.**
 > A model + configuration = one algorithm.
+
+---
+
+## 🎥 Screencast: Multi-Algorithm (Multi-Model) Benchmarking
+
+The following screencast shows the Simple QA benchmark running with
+**multiple algorithms (Qwen 0.5B vs Qwen 1.5B)** using the same dataset,
+test environment, and metric in IANVS.
+
+<video controls width="100%">
+  <source src="assets/llm_simple_qa.webm" type="video/webm">
+  Your browser does not support the video tag.
+</video>
+
+▶️ [Download screencast](assets/llm_simple_qa.webm)
+
+---
