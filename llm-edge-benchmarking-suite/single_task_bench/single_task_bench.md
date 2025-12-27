@@ -2,16 +2,14 @@
 
 **Error**
 ```
-
 ValueError: not support paradigm(singletasklearningwithcompression)
-
-````
+```
 
 **Cause**  
 The algorithm configuration used an unsupported paradigm:
 ```yaml
 paradigm_type: singletasklearningwithcompression
-````
+```
 
 IANVS only supports a fixed, predefined set of paradigms.
 
@@ -50,15 +48,37 @@ IANVS strictly requires dataset paths to be local or absolute.
 ### 3. No `requirements.txt` or README Provided
 
 **Observation**
-There is **no `requirements.txt` and no README** for the `single_task_bench` directory.
+There is **no `requirements.txt` and no README** provided for the `single_task_bench` directory.
 
 **Implication**
 
 * Dependencies are **not automatically managed**
 * Setup steps and configuration flow are **undocumented**
-* Users must infer required steps from trial and error
+* Users must infer required steps through trial and error
 
 **Resolution**
 
 * Manually installed required packages (e.g., `llama-cpp-python`, `huggingface_hub`) inside the active Conda environment
-* Documented setup, configuration changes, and troubleshooting in a custom `README.md`
+* Added custom documentation capturing setup, configuration changes, and troubleshooting
+
+---
+
+## 🎥 Screencast: Multi-Algorithm (Multi-Model) Benchmarking
+
+The following screencast shows the Simple QA benchmark running with
+**multiple algorithms (Qwen 0.5B vs Qwen 1.5B)** using the same dataset,
+test environment, and metric in IANVS.
+
+https://github.com/user-attachments/assets/single_task_bench.md.webm
+
+**Alternative display options:**
+
+### Option 1: Using relative path (if video is in the repo)
+![Screencast Demo](assets/single_task_bench.md.webm)
+
+### Option 2: Using GitHub's raw content URL
+https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/assets/single_task_bench.md.webm
+
+### Option 3: Link to download
+▶️ [Download screencast](assets/single_task_bench.md.webm)
+
