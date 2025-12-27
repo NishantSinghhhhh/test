@@ -101,19 +101,8 @@ this document was created to record known issues and fixes.
 
 
 
-## 🎥 Screencast: single_task_bench_with_compression
+## 🎥 Screencast: single_task_bench 
 
 RUnning of benchmarkingJob.yml is shown below
 
-https://github.com/user-attachments/assets/single_task_bench.md.webm
-
-**Alternative display options:**
-
-### Option 1: Using relative path (if video is in the repo)
-![Screencast Demo](assets/single_task_bench.webm)
-
-### Option 2: Using GitHub's raw content URL
-https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/assets/single_task_bench.md.webm
-
-### Option 3: Link to download
-▶️ [Download screencast](assets/single_task_bench.md.webm)
+[https://github.com/user-attachments/assets/single_task_bench.md.webm](https://github.com/NishantSinghhhhh/test/blob/master/assets/single_task_bench_with_compression.webm)
