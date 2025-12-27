@@ -63,11 +63,9 @@ There is **no `requirements.txt` and no README** provided for the `single_task_b
 
 ---
 
-## 🎥 Screencast: Multi-Algorithm (Multi-Model) Benchmarking
+## 🎥 Screencast: single_task_bench 
 
-The following screencast shows the Simple QA benchmark running with
-**multiple algorithms (Qwen 0.5B vs Qwen 1.5B)** using the same dataset,
-test environment, and metric in IANVS.
+RUnning of benchmarkingJob.yml is shown below
 
 https://github.com/user-attachments/assets/single_task_bench.md.webm
 
