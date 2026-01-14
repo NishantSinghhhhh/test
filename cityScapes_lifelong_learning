@@ -1,0 +1,394 @@
+# Complete Summary: GAN Training Setup Journey
+
+## Overview
+We set up and configured a GAN (Generative Adversarial Network) with Self-taught Learning module for the Ianvs Lifelong Learning benchmark, specifically for processing unseen tasks in the Cityscapes dataset.
+---
+
+## Steps We Followed
+
+### 1. **Initial Setup**
+- Navigated to the project directory: `unseen_task_processing-GANwithSelfTaughtLearning`
+- Activated the conda environment: `ianvs-experiment`
+- Reviewed the project structure (GAN, selftaughtlearning, deeplabv3 modules)
+
+### 2. **First Attempt to Run**
+- Tried running: `python GAN/train.py`
+- Tried running: `python selftaughtlearning/train.py`
+
+### 3. **Dataset Acquisition**
+- Initially had no Cityscapes dataset
+- Used Kaggle API to download the dataset
+- Command used: `kaggle datasets download -d shuvoalok/cityscapes -p ./dataset/cityscapes_data --unzip`
+- Final dataset location: `/home/nishant/LOCAL_DISK_D/ianvs/dataset/cityscapes_data_lifelong`
+
+### 4. **Configuration Updates**
+- Updated `config.yaml` with correct dataset paths
+- Set batch sizes appropriately for CPU training
+- Configured all three modules (GAN, STL, deeplabv3)
+
+### 5. **Code Modifications**
+- Modified `GAN/train.py` to handle CPU/GPU detection automatically
+- Fixed configuration parsing to handle dictionary format
+- Added safety patches for CPU loading
+
+---
+
+## All Errors Encountered & Solutions
+
+### **Error 1: Module Not Found - `util`**
+**Error Message:**
+```
+ModuleNotFoundError: No module named 'util'
+```
+
+**Cause:** Python couldn't find `util.py` because it was in the parent directory.
+
+**Solution:**
+```bash
+PYTHONPATH=. python GAN/train.py
+```
+Set `PYTHONPATH` to include the current directory so Python could locate `util.py`.
+
+---
+
+### **Error 2: Missing Package - `skimage`**
+**Error Message:**
+```
+ModuleNotFoundError: No module named 'skimage'
+```
+
+**Cause:** The `scikit-image` library wasn't installed.
+
+**Solution:**
+```bash
+pip install scikit-image lpips
+```
+
+---
+
+### **Error 3: File Path Error in STL**
+**Error Message:**
+```
+FileNotFoundError: [Errno 2] No such file or directory: '../config.yaml'
+```
+
+**Cause:** Scripts were looking for config one directory up, but we were running from root.
+
+**Solution:**
+```bash
+cd GAN  # or cd selftaughtlearning
+PYTHONPATH=.. python train.py
+```
+Run from inside subdirectories with parent path in PYTHONPATH.
+
+---
+
+### **Error 4: Missing Package - `IPython`**
+**Error Message:**
+```
+ModuleNotFoundError: No module named 'IPython'
+```
+
+**Cause:** The `lpips` library required IPython for debugging features.
+
+**Solution:**
+```bash
+pip install ipython
+```
+
+---
+
+### **Error 5: Missing Directories**
+**Error Message:**
+```
+FileNotFoundError: [Errno 2] No such file or directory: 'train_results/encoder_models'
+```
+
+**Cause:** Required output directories didn't exist.
+
+**Solution:**
+```bash
+mkdir -p GAN/train_results
+mkdir -p selftaughtlearning/train_results/encoder_models
+mkdir -p deeplabv3/train_results
+```
+
+---
+
+### **Error 6: Missing Package - `lmdb`**
+**Error Message:**
+```
+ModuleNotFoundError: No module named 'lmdb'
+```
+
+**Cause:** The LMDB database library wasn't installed.
+
+**Solution:**
+```bash
+pip install lmdb
+```
+
+---
+
+### **Error 7: Missing LPIPS Weights**
+**Error Message:**
+```
+FileNotFoundError: [Errno 2] No such file or directory: '.../GAN/lpips/weights/v0.1/vgg.pth'
+```
+
+**Cause:** LPIPS perceptual loss weights weren't included in the repository.
+
+**Solution:**
+```bash
+mkdir -p lpips/weights/v0.1
+wget -O lpips/weights/v0.1/vgg.pth https://raw.githubusercontent.com/richzhang/PerceptualSimilarity/master/lpips/weights/v0.1/vgg.pth
+```
+
+---
+
+### **Error 8: CUDA Device Error (Most Critical)**
+**Error Message:**
+```
+RuntimeError: Attempting to deserialize object on a CUDA device but torch.cuda.is_available() is False
+```
+
+**Cause:** Code was hardcoded to use GPU, but system only had CPU available.
+
+**Solution:** Modified `GAN/train.py` with three key changes:
+
+1. **Added CPU Loading Safety Patch:**
+```python
+if not torch.cuda.is_available():
+    original_torch_load = torch.load
+    def cpu_load(*args, **kwargs):
+        kwargs['map_location'] = 'cpu'
+        return original_torch_load(*args, **kwargs)
+    torch.load = cpu_load
+```
+
+2. **Dynamic GPU Detection:**
+```python
+# Changed from: use_gpu=True
+percept = lpips.PerceptualLoss(model='net-lin', net='vgg', use_gpu=torch.cuda.is_available())
+```
+
+3. **Automatic Device Selection:**
+```python
+# Changed from: use_cuda = True
+use_cuda = torch.cuda.is_available()
+```
+
+---
+
+### **Error 9: Config Format Error**
+**Error Message:**
+```
+KeyError: 0
+```
+
+**Cause:** Code expected list format `configs['GAN'][0]['iter']` but YAML was in dictionary format `configs['GAN']['iter']`.
+
+**Solution:** Updated config parsing to handle both formats:
+```python
+gan_config = configs['GAN']
+if isinstance(gan_config, list):
+    args['iter'] = gan_config[0]['iter']
+    # ... list indexing
+else:
+    args['iter'] = gan_config['iter']
+    # ... direct dictionary access
+```
+
+---
+
+## Final Result
+
+### **Success! Training Started**
+```
+Setting up Perceptual loss...
+...[net-lin [vgg]] initialized
+...Done
+Training started on device: cpu
+0%| | 0/50001 [00:00<?, ?it/s]
+```
+
+### **What Was Achieved:**
+✅ All dependencies installed successfully  
+✅ Dataset downloaded and configured  
+✅ Code modified to work on CPU  
+✅ GAN training loop started successfully  
+✅ Progress bar showing iteration count  
+✅ Ready to proceed to Self-taught Learning module  
+
+### **Current Status:**
+- GAN is training on CPU (slow but functional)
+- Will generate image samples every 1000 iterations
+- Model checkpoints will be saved every 2500 iterations
+- Can proceed to next module (STL) once sufficient GAN data is generated
+
+---
+
+## Key Learnings
+
+1. **PYTHONPATH Management:** Critical for multi-module Python projects
+2. **CPU vs GPU:** Always check device availability and provide fallbacks
+3. **Dependency Chains:** lpips → skimage, IPython, torch; each needs verification
+4. **Config Flexibility:** Code should handle multiple config formats
+5. **Pre-create Directories:** Python's `os.mkdir()` fails if parent doesn't exist
+6. **Weight Files:** Some models need separate weight downloads beyond pip packages
+
+
+-------------------------------------------------
+
+# Complete Summary: Self-Taught Learning (STL) Setup Journey
+
+## Overview
+
+We configured the Self-Taught Learning (STL) module, which uses an Autoencoder to learn feature representations. This involved fixing broken imports, resolving severe configuration mismatches (where the code expected a list but found a dictionary), and correctly pointing the training script to the Cityscapes dataset.
+
+---
+
+## Steps We Followed
+
+### 1. **Initial Run & Import Fixes**
+
+* Attempted to run `python train.py` from the `selftaughtlearning` directory.
+* Encountered immediate import errors for the shared `util` module.
+* **Action:** Solved via `export PYTHONPATH` initially, then permanently fixed by adding `sys.path.append` to the script header.
+
+### 2. **Configuration Debugging (The "KeyError" Loop)**
+
+* The script crashed repeatedly with `KeyError: 1`, then `KeyError: 0`, `2`, and `3`.
+* **Discovery:** The original code was badly written; it expected the `STL` config to be a list of separate items (e.g., `configs['STL'][1]`), whereas the YAML file defined it as a single dictionary.
+* **Action:** Instead of patching the YAML with duplicate keys, we performed a **clean code rewrite** of `train.py` to robustly read the configuration.
+
+### 3. **Code Refactoring**
+
+* Replaced hardcoded index access (e.g., `[0]['iter']`) with a helper function `get_stl_config`.
+* Added safety checks for missing directories.
+* Cleaned up the `config.yaml` file to remove redundant nesting.
+
+### 4. **Dataset Path Resolution**
+
+* The script defaulted to looking for `../data/fake_imgs/` (expecting GAN-generated images).
+* That directory did not exist.
+* **Action:** We redirected the script to use the real **Cityscapes training data** located at `/home/nishant/LOCAL_DISK_D/ianvs/dataset/cityscapes_data_lifelong/train/img`.
+
+---
+
+## All Errors Encountered & Solutions
+
+### **Error 1: Module Not Found - `util**`
+
+**Error Message:**
+
+```
+ModuleNotFoundError: No module named 'util'
+
+```
+
+**Cause:** `util.py` is in the parent directory, not the current working directory.
+**Solution:**
+Added parent directory to system path inside `train.py`:
+
+```python
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
+```
+
+---
+
+### **Error 2: Configuration Mismatch (KeyError)**
+
+**Error Message:**
+
+```
+KeyError: 1
+...
+KeyError: 0
+
+```
+
+**Cause:** The code was inconsistent. It tried to access `configs['STL']` as a list using indices `[1]`, `[0]`, `[2]`, and `[3]` on different lines, but the YAML loaded as a single dictionary.
+**Solution:**
+**Rewrote `train.py**` to stop using indices.
+
+* **Old Code:** `LEARNING_RATE = configs['STL'][1]['lr']`
+* **New Code:** `stl_conf = get_stl_config(configs); LEARNING_RATE = stl_conf['lr']`
+
+---
+
+### **Error 3: Missing Image Directory**
+
+**Error Message:**
+
+```
+Warning: Path ../data/fake_imgs/ does not exist.
+
+```
+
+**Cause:** The script defaults to a relative path `../data/fake_imgs/` which was missing because GAN generation hadn't populated it.
+**Solution:**
+Updated `fake_images_path` in `train.py` to point to the actual Cityscapes dataset:
+
+```python
+encoder_dataset = DatasetAutoEncoder(fake_images_path='/home/nishant/LOCAL_DISK_D/ianvs/dataset/cityscapes_data_lifelong/train/img/')
+
+```
+
+---
+
+### **Error 4: Empty Dataset / Batch Size Error**
+
+**Error Message:**
+
+```
+Error: Not enough data (0) for batch size 30
+
+```
+
+**Cause:** Because the path was wrong (Error 3), the dataset length was 0. The `DataLoader` cannot create batches from an empty list.
+**Solution:**
+Fixed by correcting the path in Error 3. Once the path was correct, the dataset loaded 60 images (as limited by the script), satisfying the batch size of 30.
+
+---
+
+## Final Result
+
+### **Success! Ready to Train**
+
+We have successfully:
+
+1. **Sanitized `train.py`:** It is now robust, uses correct imports, and handles configuration safely.
+2. **Sanitized `config.yaml`:** It is now clean and readable, without duplicate keys.
+3. **Linked Data:** The script is correctly pointing to the `train/img` folder of your Cityscapes dataset.
+
+### **Current Status:**
+
+* The Autoencoder is ready to run on the CPU (or GPU if available).
+* It will train on the first 60 images of your Cityscapes training set (as per the `self.examples[0:60]` limit in the code).
+
+---
+
+## Key Learnings
+
+1. **Don't Hardcode Indices:** Never write code that assumes config data is at index `[1]` or `[0]`. Access by key name (dictionary) is much safer.
+2. **Path Absolute vs Relative:** When debugging "File Not Found," switching to an **absolute path** (e.g., `/home/user/...`) is the quickest way to rule out relative path errors.
+3. **Check Data Before Training:** Adding a simple `if len(dataset) == 0` check prevents obscure crashes later in the `DataLoader`.
+4. **Clean Code over Quick Fixes:** While patching the YAML with `0:`, `1:`, `2:` would have worked temporarily, rewriting the Python code provided a permanent, stable solution.
+
+------------------------------------
+
+# Ianvs Lifelong Learning Benchmark: GAN & Self-Taught Learning Setup
+
+This repository contains the setup and experiments for the Ianvs Lifelong Learning benchmark, focusing on unseen task processing using GANs and Self-Taught Learning on the Cityscapes dataset.
+
+## 🎥 Demo Videos
+
+### 1. GAN Training Process
+<video src="assets/CityScapes_lifelong_GAN.webm" controls="controls" width="100%"></video>
+*(If video doesn't play, [click to download](assets/CityScapes_lifelong_GAN.webm))*
+
+### 2. Self-Taught Learning (STL) Process
+<video src="assets/CityScapes_Lifelong_SelfTaughtLearning.webm" controls="controls" width="100%"></video>
+*(If video doesn't play, [click to download](assets/CityScapes_Lifelong_SelfTaughtLearning.webm))*
