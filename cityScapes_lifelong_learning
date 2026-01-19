@@ -392,3 +392,170 @@ This repository contains the setup and experiments for the Ianvs Lifelong Learni
 ### 2. Self-Taught Learning (STL) Process
 <video src="assets/CityScapes_Lifelong_SelfTaughtLearning.webm" controls="controls" width="100%"></video>
 *(If video doesn't play, [click to download](assets/CityScapes_Lifelong_SelfTaughtLearning.webm))*
+
+# Complete Summary: DeepLabv3 Semantic Segmentation Setup Journey
+
+## Overview
+
+We successfully configured the DeepLabv3 module for semantic segmentation on the Cityscapes dataset. This process involved a significant overhaul of the legacy codebase, including fixing invalid imports, resolving rigid path dependencies (hardcoded city names), downloading missing pretrained weights, and correcting critical data dimension mismatches (handling 4D tensor labels and out-of-bounds indices).
+
+---
+
+## Steps We Followed
+
+### 1. **Environment & Import Correction**
+
+* Activated the `ianvs-experiment` environment.
+* Identified that the code was written for a package structure (`sedna.algorithms...`) that did not exist locally.
+* **Action:** Used `sed` and rewrite scripts to strip invalid prefixes and point imports to the local `deeplabv3` and `util` modules.
+
+### 2. **Pretrained Weights Acquisition**
+
+* The code crashed looking for ResNet18 weights at a hardcoded path on the original author's machine (`/home/nailtu/...`).
+* **Action:** Created the expected directory structure, downloaded the official `resnet18-5c106cde.pth` weights from PyTorch, and patched `resnet.py` to point to the local file.
+
+### 3. **Dataset Logic Rewrite (The "Jena" Error)**
+
+* The original `datasets.py` hardcoded specific German city folders (`jena/`, `zurich/`) and expected a `leftImg8bit` directory structure.
+* Our dataset was flat (`train/img`).
+* **Action:** We completely rewrote `datasets.py` to use `os.walk` and recursive searching, allowing it to dynamically find images regardless of the folder structure.
+
+### 4. **Label Sanitization & Dimension Fixing**
+
+* We encountered dimension mismatches (loading RGB labels instead of grayscale) and index errors (labels values like `37` exceeding the 19-class limit).
+* **Action:** We created a `fix_setup.py` script to enforce grayscale loading (`cv2.imread(..., 0)`) and sanitize labels by mapping all values  19 to 255 (the ignore index).
+
+---
+
+## All Errors Encountered & Solutions
+
+### **Error 1: Invalid Import Paths**
+
+**Error Message:**
+
+```text
+ModuleNotFoundError: No module named 'sedna.algorithms.unseen_task_processing...'
+
+```
+
+**Cause:** The code used absolute imports assuming it was installed as a library.
+**Solution:**
+Stripped the invalid prefix from all files:
+
+```bash
+find . -type f -name "*.py" -exec sed -i 's/sedna.algorithms...//g' {} +
+
+```
+
+### **Error 2: Config Format Mismatch (KeyError)**
+
+**Error Message:**
+
+```text
+KeyError: 3
+
+```
+
+**Cause:** Code expected `configs['deeplabv3']` to be a list, but the YAML provided a dictionary.
+**Solution:**
+Refactored `train.py` to access configuration values by key (e.g., `dl_config.get('batch_size')`) rather than index.
+
+### **Error 3: Missing ResNet Weights**
+
+**Error Message:**
+
+```text
+FileNotFoundError: .../pretrained_models/resnet/resnet18-5c106cde.pth
+
+```
+
+**Cause:** Hardcoded path to a missing file.
+**Solution:**
+Downloaded the weights and updated `resnet.py`:
+
+```bash
+wget https://download.pytorch.org/models/resnet18-5c106cde.pth -O ...
+
+```
+
+### **Error 4: Dataset Structure Mismatch**
+
+**Error Message:**
+
+```text
+FileNotFoundError: .../leftImg8bit/train/jena/
+
+```
+
+**Cause:** Code looked for specific city subfolders that did not exist in our dataset version.
+**Solution:**
+Rewrote `datasets.py` to perform a "smart scan" of the `train/` directory, ignoring specific folder names.
+
+### **Error 5: Target Dimension Mismatch**
+
+**Error Message:**
+
+```text
+RuntimeError: only batches of spatial targets supported (3D tensors) but got targets of dimension: 4
+
+```
+
+**Cause:** `cv2.imread` loaded labels as 3-channel (RGB) images, creating a 4D tensor `(Batch, H, W, Channels)`. CrossEntropyLoss expects 3D `(Batch, H, W)`.
+**Solution:**
+Forced grayscale loading in `datasets.py`:
+
+```python
+label = cv2.imread(example['label_path'], 0) # 0 flag forces grayscale
+
+```
+
+### **Error 6: Label Index Out of Bounds**
+
+**Error Message:**
+
+```text
+IndexError: Target 37 is out of bounds.
+
+```
+
+**Cause:** The dataset contained raw label values (e.g., 37) outside the model's class range (0-18).
+**Solution:**
+Implemented label sanitization in the dataset loader and configured the loss function to ignore the sanitized value:
+
+```python
+# In Dataset
+label[label >= 19] = 255
+# In Train Loop
+loss_fn = nn.CrossEntropyLoss(ignore_index=255)
+
+```
+
+### **Error 7: Invalid Model Arguments**
+
+**Error Message:**
+
+```text
+TypeError: __init__() got an unexpected keyword argument 'num_classes'
+
+```
+
+**Cause:** We attempted to pass `num_classes=19` to `DeepLabV3`, but the class definition did not support this argument.
+**Solution:**
+Reverted the model initialization to default and relied on the dataset sanitization (Error 6) to handle the class mismatch safely.
+
+---
+
+## Final Result
+
+### **Success! Training Active**
+
+```text
+--- CONFIGURATION ---
+Data Root: /home/nishant/LOCAL_DISK_D/ianvs/dataset/cityscapes_data_lifelong
+Device: cpu
+pretrained resnet, 18
+...
+Step 0 | Loss: 3.0098
+Step 2 | Loss: 3.9043
+
+```
