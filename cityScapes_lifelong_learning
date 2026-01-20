@@ -379,20 +379,6 @@ We have successfully:
 
 ------------------------------------
 
-# Ianvs Lifelong Learning Benchmark: GAN & Self-Taught Learning Setup
-
-This repository contains the setup and experiments for the Ianvs Lifelong Learning benchmark, focusing on unseen task processing using GANs and Self-Taught Learning on the Cityscapes dataset.
-
-## 🎥 Demo Videos
-
-### 1. GAN Training Process
-<video src="assets/CityScapes_lifelong_GAN.webm" controls="controls" width="100%"></video>
-*(If video doesn't play, [click to download](assets/CityScapes_lifelong_GAN.webm))*
-
-### 2. Self-Taught Learning (STL) Process
-<video src="assets/CityScapes_Lifelong_SelfTaughtLearning.webm" controls="controls" width="100%"></video>
-*(If video doesn't play, [click to download](assets/CityScapes_Lifelong_SelfTaughtLearning.webm))*
-
 # Complete Summary: DeepLabv3 Semantic Segmentation Setup Journey
 
 ## Overview
@@ -559,3 +545,23 @@ Step 0 | Loss: 3.0098
 Step 2 | Loss: 3.9043
 
 ```
+---------------------------------------------
+
+# Ianvs Lifelong Learning Benchmark: GAN & Self-Taught Learning Setup
+
+This repository contains the setup and experiments for the Ianvs Lifelong Learning benchmark, focusing on unseen task processing using GANs and Self-Taught Learning on the Cityscapes dataset.
+
+## 🎥 Demo Videos
+
+### 1. GAN Training Process
+<video src="assets/CityScapes_lifelong_GAN.webm" controls="controls" width="100%"></video>
+*(If video doesn't play, [click to download](assets/CityScapes_lifelong_GAN.webm))*
+
+### 2. Self-Taught Learning (STL) Process
+<video src="assets/CityScapes_Lifelong_SelfTaughtLearning.webm" controls="controls" width="100%"></video>
+*(If video doesn't play, [click to download](assets/CityScapes_Lifelong_SelfTaughtLearning.webm))*
+
+
+### 3. DeepLabv3 Process
+<video src="assets/CityScapes_Lifelong_Deeplabv3.webm" controls="controls" width="100%"></video>
+*(If video doesn't play, [click to download](assets/CityScapes_Lifelong_Deeplabv3.webm))*
