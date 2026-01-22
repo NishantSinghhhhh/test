@@ -226,17 +226,6 @@ Training started on device: cpu
 - Model checkpoints will be saved every 2500 iterations
 - Can proceed to next module (STL) once sufficient GAN data is generated
 
----
-
-## Key Learnings
-
-1. **PYTHONPATH Management:** Critical for multi-module Python projects
-2. **CPU vs GPU:** Always check device availability and provide fallbacks
-3. **Dependency Chains:** lpips → skimage, IPython, torch; each needs verification
-4. **Config Flexibility:** Code should handle multiple config formats
-5. **Pre-create Directories:** Python's `os.mkdir()` fails if parent doesn't exist
-6. **Weight Files:** Some models need separate weight downloads beyond pip packages
-
 
 -------------------------------------------------
 
