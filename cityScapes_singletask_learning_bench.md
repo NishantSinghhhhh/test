@@ -319,21 +319,6 @@ ianvs -f benchmarkingjob.yaml
 
 ---
 
-### Trade-offs
-
-| Decision | Rationale | Trade-off |
-|----------|-----------|-----------|
-| Copy instead of fix | 80%+ files missing, faster to copy working code | Code duplication |
-| No core changes | Safer, faster, doesn't break other examples | May need similar fixes elsewhere |
-| Auto-download script | Improves UX, reduces setup errors | 48GB download |
-| CPU-only default | Works on any hardware | Slower than GPU |
-
-**Why Copy:** The example is fundamentally incomplete (missing implementation), not broken. Copying proven code is faster and safer than reimplementing.
-
-**Why No Core Changes:** Issue is example-specific missing files, not framework bugs. Core works correctly.
-
----
-
 
 ## 🎥 Screencast: LLM_Agent_Benchmark_single_task_learning 
 
