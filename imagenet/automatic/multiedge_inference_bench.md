@@ -183,8 +183,8 @@ conda install -c conda-forge cudatoolkit=11.8 cudnn=8.9.2
 ## 🎥 Screencast: Image_net_Multi Automatic 
 
 <video controls width="100%">
-  <source src="assets/imagenet_multi_automatic.webm" type="video/webm">
+  <source src="../assets/imagenet_multi_automatic.webm" type="video/webm">
   Your browser does not support the video tag.
 </video>
 
-▶️ [Download screencast](assets/imagenet_multi_automatic.webm)
+▶️ [Download screencast](../assets/imagenet_multi_automatic.webm)

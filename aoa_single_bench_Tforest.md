@@ -110,10 +110,10 @@ Since the dataset is private, I will add a simple script `gen_dummy_data.py` (or
 
 
 <video controls width="100%">
-  <source src="assets/aoa_single_task.webm" type="video/webm">
+  <source src="../assets/aoa_single_task.webm" type="video/webm">
   Your browser does not support the video tag.
 </video>
 
-▶️ [Download screencast](assets/aoa_single_task.webm)
+▶️ [Download screencast](../assets/aoa_single_task.webm)
 
 

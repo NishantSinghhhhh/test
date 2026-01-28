@@ -544,13 +544,13 @@ This repository contains the setup and experiments for the Ianvs Lifelong Learni
 
 ### 1. GAN Training Process
 <video src="assets/CityScapes_lifelong_GAN.webm" controls="controls" width="100%"></video>
-*(If video doesn't play, [click to download](assets/CityScapes_lifelong_GAN.webm))*
+*(If video doesn't play, [click to download](../assets/CityScapes_lifelong_GAN.webm))*
 
 ### 2. Self-Taught Learning (STL) Process
 <video src="assets/CityScapes_Lifelong_SelfTaughtLearning.webm" controls="controls" width="100%"></video>
-*(If video doesn't play, [click to download](assets/CityScapes_Lifelong_SelfTaughtLearning.webm))*
+*(If video doesn't play, [click to download](../assets/CityScapes_Lifelong_SelfTaughtLearning.webm))*
 
 
 ### 3. DeepLabv3 Process
 <video src="assets/CityScapes_Lifelong_Deeplabv3.webm" controls="controls" width="100%"></video>
-*(If video doesn't play, [click to download](assets/CityScapes_Lifelong_Deeplabv3.webm))*
+*(If video doesn't play, [click to download](../assets/CityScapes_Lifelong_Deeplabv3.webm))*
