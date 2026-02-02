@@ -1,0 +1,36 @@
+testenv:
+  dataset:
+    train_index: "/home/nishant/LOCAL_DISK_D/ianvs/examples/CloudEdgeSpecBench/dataset/test_data.txt"
+    test_index: "/home/nishant/LOCAL_DISK_D/ianvs/examples/CloudEdgeSpecBench/dataset/test_data.txt"
+    format: "txt"
+
+  type: "cloud_edge_simulator"
+  scenarios:
+    - name: "ideal_fiber"
+      parameters: { rtt_ms: 10, jitter_ms: 0, concurrency: 1 }
+
+  metrics:
+    - name: "normalized_speedup"
+      url: "./testenv/cloud_edge_net/metrics.py"
+    - name: "throughput_tok_s"
+      url: "./testenv/cloud_edge_net/metrics.py"
+    - name: "acceptance_rate"
+      url: "./testenv/cloud_edge_net/metrics.py"
+    - name: "ttft_ms"
+      url: "./testenv/cloud_edge_net/metrics.py"
+    - name: "p50_latency"
+      url: "./testenv/cloud_edge_net/metrics.py"
+    - name: "p95_latency"
+      url: "./testenv/cloud_edge_net/metrics.py"
+    - name: "stream_jitter"
+      url: "./testenv/cloud_edge_net/metrics.py"
+    - name: "energy_efficiency"
+      url: "./testenv/cloud_edge_net/metrics.py"
+    - name: "draft_k"
+      url: "./testenv/cloud_edge_net/metrics.py"
+    - name: "compute_ratio"
+      url: "./testenv/cloud_edge_net/metrics.py"
+    - name: "dataset_task"
+      url: "./testenv/cloud_edge_net/metrics.py"
+    - name: "concurrency"
+      url: "./testenv/cloud_edge_net/metrics.py"

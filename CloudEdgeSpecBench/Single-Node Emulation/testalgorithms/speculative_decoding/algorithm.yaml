@@ -1,0 +1,32 @@
+algorithm:
+  name: "speculative_decoding"
+  paradigm_type: "singletasklearning"
+  
+  modules:
+    - type: "basemodel"
+      name: "cloud_edge_scheduler"
+      url: "./testalgorithms/speculative_decoding/spec_scheduler.py"
+      class: "SpeculativeScheduler"
+      
+      hyperparameters:
+        # --- MODEL CONFIG ---
+        - draft_model:
+            values: ["gpt2"] 
+        - target_model:
+            values: ["gpt2-medium"]
+        
+        # --- NETWORK CONFIG (Simulated) ---
+        # We manually pass RTT here because the Python script needs to read it
+        - rtt_ms:
+            values: [50]  # Simulate 50ms Network Latency (Wifi/5G)
+
+  hyperparameters:
+    # --- SWEEP: TEST DIFFERENT K VALUES ---
+    # This will cause Ianvs to run 3 separate test cases!
+    draft_k: 
+      values: [1, 3, 5] 
+      
+    compute_ratio:
+      values: [1.0]
+    dataset_task:
+      values: ["WikiText"]

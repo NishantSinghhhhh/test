@@ -1,0 +1,21 @@
+algorithm:
+  name: "distributed_spec_decoding"
+  paradigm_type: "singletasklearning"
+  
+  modules:
+    - type: "basemodel"
+      name: "edge_worker"
+      url: "./testalgorithms/distributed_spec_decoding/edge_worker.py"
+      class: "EdgeWorker"
+      
+      hyperparameters:
+        # --- CRITICAL: The IP of your DigitalOcean Droplet ---
+        # You will edit this file after you set up the cloud server
+        - cloud_url:
+            values: ["http://127.0.0.1:5000"] # Default to localhost for testing
+
+  hyperparameters:
+    draft_k: 
+      values: [1, 3, 5] 
+    draft_model:
+      values: ["gpt2"]

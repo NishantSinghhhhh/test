@@ -1,0 +1,4 @@
+numpy>=1.21.0
+pyyaml>=6.0
+# The core ianvs framework (assuming local install or from source)
+# ianvs
