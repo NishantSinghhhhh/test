@@ -22,7 +22,7 @@ Experiments are conducted on a PC with the following configuration:
 
 the complete dataset running 
 
-![Complete Dataset Run Results](./assets/system-configuration.png)
+![Complete Dataset Run Results](./assets/images/system-configuration.png)
 
 
 ## 3. Task 1: Running the MMLU-5-shot Dataset
@@ -31,22 +31,35 @@ This step involved setting up the environment and running the benchmark using th
 
 ### Issue 1: Dependency Errors
 
-During the initial setup, I encountered errors installing `requirements.txt` and running the benchmark due to missing system and python dependencies:
+During the initial setup and execution in a fresh environment, I encountered multiple dependency failures. The `requirements.txt` provided in the example was insufficient to cover all system and Python package requirements for the benchmark.
 
-1. **Rust/Cargo Error:** The `tokenizers` package failed to build.
-* *Solution:* Installed Rust via Conda: `conda install -c conda-forge rust`.
+**1. Rust/Cargo Error (System Dependency)**
+The installation of `requirements.txt` failed immediately because the `tokenizers` library requires a Rust compiler to build extensions, which was not present in the base environment.
+* **Error:** `Cargo, the Rust package manager, is not installed or is not on PATH.`
+* **Solution:** Installed Rust via Conda: `conda install -c conda-forge rust`.
+![Prettytable Dependency Error](./assets/images/pre-test-rust-error.png)
+![Rust Compiler Error]()
 
-The Error
+**2. Prettytable Error (Missing Python Dependency)**
+After successfully installing requirements and attempting to run `ianvs`, the execution crashed due to a missing visualization library.
+* **Error:** `ModuleNotFoundError: No module named 'prettytable'`
+* **Solution:** Installed the package manually: `pip install prettytable`.
 
-![Complete Dataset Run Results](./assets/pre-test-rust-error.png)
+![Prettytable Dependency Error](./assets/images/pre-test-prettytable.png)
 
-2. **ONNX Error:** The system reported "onnx not installed".
-* *Solution:* Manually installed the package: `pip3 install onnx`.
+**3. ONNX Error (Missing Python Dependency)**
+The benchmark failed again when initializing the `MultiedgeInference` paradigm, as the ONNX runtime was required but not installed.
+* **Error:** `ModuleNotFoundError: No module named 'onnx'`
+* **Solution:** Installed the package manually: `pip install onnx`.
 
+![ONNX Dependency Error](./assets/images/pre-test-onnx.png)
 
-3. **Retry Package Error:** The execution failed with `ModuleNotFoundError: No module named 'retry'`, as it was missing from the environment.
-* *Solution:* Installed the package manually: `pip install retry`.
+**4. Retry Package Error (Missing Python Dependency)**
+Finally, the Edge Model initialization failed because the API-based LLM module relies on the `retry` library, which was missing.
+* **Error:** `ModuleNotFoundError: No module named 'retry'`
+* **Solution:** Installed the package manually: `pip install retry`.
 
+![Retry Dependency Error](./assets/images/pre-test-retry.png)
 
 
 ### Issue 2: CUDA Out of Memory (vLLM Backend)
@@ -61,10 +74,10 @@ When attempting to run the 7B parameter model (`Qwen2.5-7B-Instruct`) using the 
 For the purpose of this pre-test validation, the dataset size was reduced from the full **14,042 samples** to **2 samples**. This adjustment was made to verify the correctness of the pipeline and hardware compatibility within a reasonable timeframe, given the computational constraints of the local machine.
 
 the complete dataset running 
-![Complete Dataset Run Results](./assets/pre-test-14000.png)
+![Complete Dataset Run Results](./assets/images/pre-test-14000.png)
 
 Complete pipeline with a smaller dataset
-![Complete Dataset Run Results](./assets/pre-test-cloud-edge.png)
+![Complete Dataset Run Results](./assets/images/pre-test-cloud-edge.png)
 
 **Execution Logs:**
 
@@ -104,5 +117,5 @@ The benchmark executed successfully on the reduced dataset, confirming that the 
 
 **Attachments:**
 
-* [Click here to watch the setup recording](./assets/pre-test-2-final.webm)
+* [Click here to watch the setup recording](./assets/videos/pre-test-2-final.webm)
 
