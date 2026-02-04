@@ -19,20 +19,10 @@ Experiments are conducted on a PC with the following configuration:
 - **Driver Version:** 580.126.09
 
 **Output of `nvidia-smi` command:**
-```text
-+-----------------------------------------------------------------------------------------+
-| NVIDIA-SMI 580.126.09             Driver Version: 580.126.09      CUDA Version: 13.0    |
-+-----------------------------------------+------------------------+----------------------+
-| GPU  Name                  Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |
-| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |
-|                                         |                        |               MIG M. |
-|=========================================+========================+======================|
-|   0  NVIDIA GeForce RTX 3050 ...    Off |   00000000:01:00.0 Off |                  N/A |
-| N/A   49C    P0            749W /   80W |      15MiB /   4096MiB |      8%      Default |
-|                                         |                        |                  N/A |
-+-----------------------------------------+------------------------+----------------------+
 
-```
+the complete dataset running 
+
+![Complete Dataset Run Results](./assets/system-configuration.png)
 
 ## 3. Task 1: Running the MMLU-5-shot Dataset
 
@@ -67,7 +57,7 @@ When attempting to run the 7B parameter model (`Qwen2.5-7B-Instruct`) using the 
 For the purpose of this pre-test validation, the dataset size was reduced from the full **14,042 samples** to **2 samples**. This adjustment was made to verify the correctness of the pipeline and hardware compatibility within a reasonable timeframe, given the computational constraints of the local machine.
 
 the complete dataset running 
-![Complete Dataset Run Results](./assets//pre-test-14000.png)
+![Complete Dataset Run Results](./assets/pre-test-14000.png)
 
 Complete pipeline with a smaller dataset
 ![Complete Dataset Run Results](./assets/pre-test-cloud-edge.png)
