@@ -24,6 +24,7 @@ the complete dataset running
 
 ![Complete Dataset Run Results](./assets/system-configuration.png)
 
+
 ## 3. Task 1: Running the MMLU-5-shot Dataset
 
 This step involved setting up the environment and running the benchmark using the MMLU dataset. While the dataset and cache were provided, I encountered specific configuration challenges relevant to my hardware setup.
@@ -102,4 +103,3 @@ The benchmark executed successfully on the reduced dataset, confirming that the 
 
 * [Click here to watch the setup recording](./assets/pre-test-2-final.webm)
 
-```
