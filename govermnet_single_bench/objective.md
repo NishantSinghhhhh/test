@@ -117,9 +117,9 @@ Processing:   0%|            | 1/1600 [00:27<12:17:14, 27.66s/question]
 
 
 <video controls width="100%">
-  <source src="assets/govermnet_single_objective.webm" type="video/webm">
+  <source src="assets/videos/govermnet_single_objective.webm" type="video/webm">
   Your browser does not support the video tag.
 </video>
 
-▶️ [Download screencast](assets/govermnet_single_objective.webm)
+▶️ [Download screencast](assets/videos/govermnet_single_objective.webm)
 

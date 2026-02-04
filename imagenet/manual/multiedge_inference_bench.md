@@ -140,8 +140,8 @@ Accuracy: 92.00%
 ## 🎥 Screencast: Image_net_Multi 
 
 <video controls width="100%">
-  <source src="../assets/imagenet_multi_infrence.webm" type="video/webm">
+  <source src="../assets/videos/imagenet_multi_infrence.webm" type="video/webm">
   Your browser does not support the video tag.
 </video>
 
-▶️ [Download screencast](../assets/imagenet_multi_infrence.webm)
+▶️ [Download screencast](../assets/videos/imagenet_multi_infrence.webm)
