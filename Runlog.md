@@ -117,5 +117,5 @@ The benchmark executed successfully on the reduced dataset, confirming that the 
 
 **Attachments:**
 
-* [Click here to watch the setup recording](./assets/videos/pre-test-2-final.webm)
+* [Click here to watch the setup recording](./assets/vidoes/pre-test-2-final.webm)
 
