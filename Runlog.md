@@ -36,6 +36,9 @@ During the initial setup, I encountered errors installing `requirements.txt` and
 1. **Rust/Cargo Error:** The `tokenizers` package failed to build.
 * *Solution:* Installed Rust via Conda: `conda install -c conda-forge rust`.
 
+The Error
+
+![Complete Dataset Run Results](./assets/pre-test-rust-error.png)
 
 2. **ONNX Error:** The system reported "onnx not installed".
 * *Solution:* Manually installed the package: `pip3 install onnx`.
