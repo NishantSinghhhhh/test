@@ -323,8 +323,8 @@ ianvs -f benchmarkingjob.yaml
 ## 🎥 Screencast: LLM_Agent_Benchmark_single_task_learning 
 
 <video controls width="100%">
-  <source src="../assets/videos/cityScapes_compressed.webm" type="video/webm">
+  <source src="https://drive.google.com/file/d/1CCQVMb0nT3K8OlMqdinCIUIl16h9i2Jw/view?usp=drive_link" type="video/webm">
   Your browser does not support the video tag.
 </video>
 
-▶️ [Download screencast](../assets/videos/cityScapes_compressed.webm)
+▶️ [Download screencast](https://drive.google.com/file/d/1CCQVMb0nT3K8OlMqdinCIUIl16h9i2Jw/view?usp=drive_link)

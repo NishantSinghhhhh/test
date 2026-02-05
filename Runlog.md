@@ -195,4 +195,4 @@ The benchmark executed successfully on the reduced dataset, confirming that the 
 
 ## 8. Attachments
 
-* [Click here to watch the setup recording](./assets/vidoes/pre-test-2-final.webm)
+* [Click here to watch the setup recording](https://drive.google.com/file/d/1sMJDtIkpklD5vIRhJFmbCbMxcinAjfOv/view?usp=drive_link)

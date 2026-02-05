@@ -403,10 +403,10 @@ def __init__(self, **kwargs):
 ## 🎥 Screencast: LLM_Agent_Benchmark_single_task_learning 
 
 <video controls width="100%">
-  <source src="../assets/videos/LLM_Agent_Benchmark_single_task_learning.webm" type="video/webm">
+  <source src="https://drive.google.com/file/d/1WUKXgGk1uR33S4EE1NCdSODSdptiJExX/view?usp=drive_link" type="video/webm">
   Your browser does not support the video tag.
 </video>
 
-▶️ [Download screencast](../assets/videos/LLM_Agent_Benchmark_single_task_learning.webm)
+▶️ [Download screencast](https://drive.google.com/file/d/1WUKXgGk1uR33S4EE1NCdSODSdptiJExX/view?usp=drive_link)
 
 ---

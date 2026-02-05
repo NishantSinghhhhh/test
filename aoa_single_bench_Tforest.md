@@ -108,12 +108,11 @@ Since the dataset is private, I will add a simple script `gen_dummy_data.py` (or
 
 ## 🎥 Screencast: AoA TForest Example
 
-
 <video controls width="100%">
-  <source src="../assets/videos/aoa_single_task.webm" type="video/webm">
+  <source src="https://drive.google.com/uc?export=download&id=12-mJwvGzN5BDfu_2xFsE3czi4I5z7ClR" type="video/webm">
   Your browser does not support the video tag.
 </video>
 
-▶️ [Download screencast](../assets/videos/aoa_single_task.webm)
+▶️ [Download screencast](https://drive.google.com/uc?export=download&id=12-mJwvGzN5BDfu_2xFsE3czi4I5z7ClR)
 
 

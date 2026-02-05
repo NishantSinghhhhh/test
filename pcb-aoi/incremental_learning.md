@@ -196,11 +196,11 @@ Rank	Algorithm	F1 Score	Samples Transfer Ratio	Paradigm	Base Model	Hard Example 
 
 
 <video controls width="100%">
-  <source src="../assets/videos/pcb-aoi-incremental_learning.mp4" type="video/mp4">
+  <source src="https://drive.google.com/file/d/17QnKjBO_8lhh48A-6e60Ma_f1zPA5lZz/view?usp=drive_link" type="video/mp4">
   Your browser does not support the video tag.
 </video>
 
-▶️ [Download screencast](../assets/videos/pcb-aoi-incremental_learning.mp4)
+▶️ [Download screencast](https://drive.google.com/file/d/17QnKjBO_8lhh48A-6e60Ma_f1zPA5lZz/view?usp=drive_link)
 
 ### Execution Result
 ![Training Loop Screenshot](../assets/images/pcb-aoi-incremental.png)

@@ -189,10 +189,10 @@ The following screencast shows the Simple QA benchmark running with
 test environment, and metric in IANVS.
 
 <video controls width="100%">
-  <source src="../assets/videos/llm_simple_qa.webm" type="video/webm">
+  <source src="https://drive.google.com/file/d/1UAtplV2MrNtQ8nf9S95QZg9SAAGmDYuQ/view?usp=drive_link" type="video/webm">
   Your browser does not support the video tag.
 </video>
 
-▶️ [Download screencast](../assets/videos/llm_simple_qa.webm)
+▶️ [Download screencast](https://drive.google.com/file/d/1UAtplV2MrNtQ8nf9S95QZg9SAAGmDYuQ/view?usp=drive_link)
 
 ---

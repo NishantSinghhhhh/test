@@ -235,8 +235,8 @@ device = "cuda" if torch.cuda.is_available() else "cpu"
 
 
 <video controls width="100%">
-  <source src="assets/videos/goverment_single_subjective.webm" type="video/webm">
+  <source src="https://drive.google.com/file/d/1s8h-N6QhHOG_TOZQIcPitsyEPiT4Dr9U/view?usp=drive_link" type="video/webm">
   Your browser does not support the video tag.
 </video>
 
-▶️ [Download screencast](assets/videos/goverment_single_subjective.webm)
+▶️ [Download screencast](https://drive.google.com/file/d/1s8h-N6QhHOG_TOZQIcPitsyEPiT4Dr9U/view?usp=drive_link)

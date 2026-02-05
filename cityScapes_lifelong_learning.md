@@ -543,14 +543,14 @@ This repository contains the setup and experiments for the Ianvs Lifelong Learni
 ## 🎥 Demo Videos
 
 ### 1. GAN Training Process
-<video src="assets/videos/CityScapes_lifelong_GAN.webm" controls="controls" width="100%"></video>
-*(If video doesn't play, [click to download](../assets/videos/CityScapes_lifelong_GAN.webm))*
+<video src="https://drive.google.com/file/d/1Z9Y4WeEMUIw6trz552MhW568xaL7tEIi/view?usp=drive_link" controls="controls" width="100%"></video>
+*(If video doesn't play, [click to download](https://drive.google.com/file/d/1Z9Y4WeEMUIw6trz552MhW568xaL7tEIi/view?usp=drive_link))*
 
 ### 2. Self-Taught Learning (STL) Process
-<video src="assets/videos/CityScapes_Lifelong_SelfTaughtLearning.webm" controls="controls" width="100%"></video>
-*(If video doesn't play, [click to download](../assets/videos/CityScapes_Lifelong_SelfTaughtLearning.webm))*
+<video src="https://drive.google.com/file/d/1L9zcI_ume0rKCSJtckldMXYsJ5OXiCP_/view?usp=drive_link" controls="controls" width="100%"></video>
+*(If video doesn't play, [click to download](https://drive.google.com/file/d/1L9zcI_ume0rKCSJtckldMXYsJ5OXiCP_/view?usp=drive_link))*
 
 
 ### 3. DeepLabv3 Process
-<video src="assets/videos/CityScapes_Lifelong_Deeplabv3.webm" controls="controls" width="100%"></video>
-*(If video doesn't play, [click to download](../assets/videos/CityScapes_Lifelong_Deeplabv3.webm))*
+<video src="https://drive.google.com/file/d/1d0YP15RU_JXIDuLjQUZYETGyCwjWYVCN/view?usp=drive_link" controls="controls" width="100%"></video>
+*(If video doesn't play, [click to download](https://drive.google.com/file/d/1d0YP15RU_JXIDuLjQUZYETGyCwjWYVCN/view?usp=drive_link))*
