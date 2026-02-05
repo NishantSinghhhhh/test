@@ -1,9 +1,8 @@
-# Cloud-Edge Speculative Decoding Benchmark - Complete Run Log 
+# Cloud-Edge Speculative Decoding Benchmark - Complete Run Log
 
 ## Overview
 
-I have written a very basic code of how things will be running in the Cloud-Edge Speculative Decoding Benchmark, I have divided into 2 as mentioned below:
-
+This document presents comprehensive benchmark results for the Cloud-Edge Speculative Decoding system across two deployment architectures:
 1. **Single-Node Deployment:** Both Edge and Cloud models running on the same local machine
 2. **Hybrid Deployment:** Edge model on local machine, Cloud model on remote DigitalOcean server
 
@@ -161,21 +160,17 @@ The attention mask is not set and cannot be inferred from input because pad toke
 
 ---
 
-## 🎥 Screencast: Full Simulation of Single Node
+## 9. Screencast: Full Simulation of Single Node
 
-<video controls width="100%">
-  <source src="./assets/vidoes/Single_Node_Simulation.webm" type="video/webm">
-  Your browser does not support the video tag.
-</video>
+📹 **[Watch Single Node Deployment Screencast](https://drive.google.com/file/d/1GIBB_Xx639erUnlv8I7PJ13SXLyd7EwH/view?usp=sharing)**
 
-▶️ [Download screencast](./assets/vidoes/Single_Node_Simulation.webm)
-
+---
 
 # Task 2: Hybrid Deployment (Distributed Cloud-Edge)
 
 ## 1. Architecture Overview
 
-This benchmark evaluates a **Hybrid Cloud-Edge** architecture for Speculative Decoding. The system splits inference between a local "Edge" device (Drafting) and a remote "Cloud" server (Digital ocean droplet).
+This benchmark evaluates a **Hybrid Cloud-Edge** architecture for Speculative Decoding. The system splits inference between a local "Edge" device (Drafting) and a remote "Cloud" server (Verification).
 
 ### Infrastructure Components
 
@@ -279,6 +274,12 @@ Ianvs successfully aggregated the metrics from multiple runs, demonstrating repr
 
 ---
 
+## 5. Screencast: Full Simulation of Hybrid Node
+
+📹 **[Watch Hybrid Deployment Screencast](https://drive.google.com/file/d/1eNbhNvzU8R4-xH9K0R6dsbceW8Yrjj7V/view?usp=sharing)**
+
+---
+
 ## Conclusion
 
 This comprehensive benchmark demonstrates the Cloud-Edge Speculative Decoding system across two deployment scenarios:
@@ -288,12 +289,3 @@ This comprehensive benchmark demonstrates the Cloud-Edge Speculative Decoding sy
 2. **Hybrid Deployment** successfully validated the distributed architecture but revealed significant performance penalties (0.43-0.47 tokens/s, 44-48 seconds latency) when the cloud verifier operates under severe resource constraints.
 
 Both deployments maintained consistent 60% acceptance rates, demonstrating the robustness of the draft model across different execution environments. The results clearly highlight the importance of adequate cloud resources for effective cloud-edge collaboration in speculative decoding scenarios.
-
-## 🎥 Screencast: Full Simulation of Hybrid Node
-
-<video controls width="100%">
-  <source src="./assets/vidoes/Hybrid_Cloud_Edge_simulation.webm" type="video/webm">
-  Your browser does not support the video tag.
-</video>
-
-▶️ [Download screencast](./assets/vidoes/Hybrid_Cloud_Edge_simulation.webm)
