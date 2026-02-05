@@ -1,20 +1,49 @@
-# Cloud-Edge Speculative Decoding Benchmark
-# 云边协同推测解码基准测试
+# Cloud-Edge Speculative Decoding Benchmark - Complete Run Log 
 
-## 1. Overview
+## Overview
+
+I have written a very basic code of how things will be running in the Cloud-Edge Speculative Decoding Benchmark, I have divided into 2 as mentioned below:
+
+1. **Single-Node Deployment:** Both Edge and Cloud models running on the same local machine
+2. **Hybrid Deployment:** Edge model on local machine, Cloud model on remote DigitalOcean server
+
+---
+
+# Task 1: Single-Node Deployment (Local Benchmarking)
+
+## 1. Introduction
+
 This benchmark quantitatively evaluates the trade-off between **Edge-Side Drafting** and **Cloud-Side Verification** in Speculative Decoding systems. 
 
 Unlike standard benchmarks that only measure raw throughput, this benchmark specifically targets the **"Cloud-Edge Break-Point"**—identifying the exact Network RTT and Device Latency thresholds where collaboration becomes slower than a simple direct-to-cloud request.
 
 ## 2. Key Features
+
 * **Network Simulation:** Simulates Fiber (10ms), 5G (40ms), and 4G (100ms+) environments with Jitter.
-* **Device Profiling:** Simulates diverse Edge devices via \`compute_ratio\` (e.g., Jetson Orin vs. Raspberry Pi).
-* **Realistic Metrics:** * **Normalized Speedup:** Does it actually beat the cloud baseline?
+* **Device Profiling:** Simulates diverse Edge devices via `compute_ratio` (e.g., Jetson Orin vs. Raspberry Pi).
+* **Realistic Metrics:**
+    * **Normalized Speedup:** Does it actually beat the cloud baseline?
     * **p95 Latency:** Is the system stable under network jitter?
     * **Energy Efficiency:** Estimated battery impact on the Edge device.
 
-## 3. Project Structure
-\`\`\`text
+## 3. Environment Configuration
+
+### Hardware
+- **OS:** Ubuntu Linux (WSL2 Environment)
+- **GPU:** NVIDIA GeForce RTX 3050
+- **VRAM:** 4GB GDDR6
+- **CUDA Version:** 13.0
+- **Driver Version:** 580.126.09
+
+### Software
+- **Draft Model (Edge):** GPT-2 Small
+- **Verifier Model (Cloud):** GPT-2 Medium
+- **Deployment Mode:** Single-Node (Both models on same machine)
+- **Device:** CPU-only execution
+
+## 4. Project Structure
+
+```text
 CloudEdgeSpecBench/
 ├── benchmarkingjob.yaml                # Master Controller (Run this file)
 ├── testenv/
@@ -26,38 +55,19 @@ CloudEdgeSpecBench/
         ├── algorithm.yaml              # Strategy Settings (Draft K, Task Domain)
         ├── spec_scheduler.py           # The "Boss & Intern" Logic
         └── basemodel.py                # Standard Ianvs Interface
-\`\`\`
+```
 
-## 4. How to Run
+## 5. Execution
 
-1. **Install Dependencies** (Ensure you have Ianvs installed):
-\`\`\`bash
-pip install ianvs numpy pyyaml
-\`\`\`
-
-2. **Execute the Benchmark**:
-\`\`\`bash
+### Command
+```bash
 ianvs -f benchmarkingjob.yaml
-\`\`\`
+```
 
-## 5. Understanding the Results
+### Execution Logs
 
-After running, Ianvs will output a table. Here is how to read the columns:
-
-| Metric | Goal | Interpretation |
-| --- | --- | --- |
-| **normalized_speedup** | \`> 1.0\` | **>1.2** is good. **<1.0** means the Edge is too slow or Network is too bad. |
-| **p95_latency** | Low | High values indicate "stuttering" due to network jitter. |
-| **acceptance_rate** | \`> 0.6\` | If low, the "Intern" (Edge Model) is guessing wrong too often. |
-| **energy_efficiency** | Low | Joules consumed per generated token on the Edge device. |
-
-## 6. Modifying the Test
-
-* **To change Network conditions:** Edit \`testenv/cloud_edge_net/testenv.yaml\`.
-* **To change Draft Length (K):** Edit \`testalgorithms/speculative_decoding/algorithm.yaml\`.
-
-## 7. Example Results (Latest Run)
-ianvs-experiment) nishant@Development-arc:~/LOCAL_DISK_D/ianvs/examples/CloudEdgeSpecBench$ ianvs -f benchmarkingjob.yaml
+```text
+(ianvs-experiment) nishant@Development-arc:~/LOCAL_DISK_D/ianvs/examples/CloudEdgeSpecBench$ ianvs -f benchmarkingjob.yaml
 
 [INIT] Device: CPU | K=3 | Ratio=1.0
 2026-02-02 19:11:15.248032: I tensorflow/stream_executor/platform/default/dso_loader.cc:50] Successfully opened dynamic library libcudart.so.12
@@ -119,6 +129,11 @@ The attention mask is not set and cannot be inferred from input because pad toke
 [48] TTFT: 1272ms | Latency: 5.07s | Speed: 4.14 t/s
 [49] TTFT: 238ms | Latency: 4.00s | Speed: 5.25 t/s
 [50] TTFT: 277ms | Latency: 3.82s | Speed: 5.50 t/s
+```
+
+## 6. Results Table
+
+```text
 +------+----------------------+--------------------+-------------------+--------------------+--------------------+--------------------+-------------------+--------------------+--------------------+--------------------+----------------------+---------+---------------+--------------+-------------+---------------------+-----------------------------------------------------------------------------------------------------------------+
 | rank |      algorithm       | normalized_speedup |  throughput_tok_s |  acceptance_rate   |      ttft_ms       |    p50_latency     |    p95_latency    |   stream_jitter    | energy_efficiency  |      paradigm      |      basemodel       | draft_k | compute_ratio | dataset_task | concurrency |         time        |                                                       url                                                       |
 +------+----------------------+--------------------+-------------------+--------------------+--------------------+--------------------+-------------------+--------------------+--------------------+--------------------+----------------------+---------+---------------+--------------+-------------+---------------------+-----------------------------------------------------------------------------------------------------------------+
@@ -126,5 +141,159 @@ The attention mask is not set and cannot be inferred from input because pad toke
 |  2   | speculative_decoding | 0.2603876229899036 | 5.613038843047288 | 0.6000000000000001 | 330.03888607025146 | 3.7809853553771973 | 4.829549539089202 | 0.6906462667972331 | 384.04283142089844 | singletasklearning | cloud_edge_scheduler |    3    |      1.0      |      1       |      1      | 2026-02-02 19:14:29 | ./workspace/cloud_edge_speculative_decoding_benchmark/speculative_decoding/d7849b6a-003c-11f1-ba66-7cb566cc3837 |
 +------+----------------------+--------------------+-------------------+--------------------+--------------------+--------------------+-------------------+--------------------+--------------------+--------------------+----------------------+---------+---------------+--------------+-------------+---------------------+-----------------------------------------------------------------------------------------------------------------+
 [2026-02-02 19:14:29,388] benchmarking.py(39) [INFO] - benchmarkingjob runs successfully.
-(ianvs-experiment) nishant@Development-arc:~/LOCAL_DISK_D/ianvs/examples/CloudEdgeSpecBench$ 
-> **Note:** A \`normalized_speedup\` of 0.253 indicates that in this specific configuration (CPU-only), the overhead of the "Edge" model was higher than the gain. To see speedups > 1.0, run this on a machine with a dedicated GPU (CUDA).
+```
+
+## 7. Understanding the Results
+
+| Metric | Goal | Interpretation |
+| --- | --- | --- |
+| **normalized_speedup** | `> 1.0` | **>1.2** is good. **<1.0** means the Edge is too slow or Network is too bad. |
+| **p95_latency** | Low | High values indicate "stuttering" due to network jitter. |
+| **acceptance_rate** | `> 0.6` | If low, the "Intern" (Edge Model) is guessing wrong too often. |
+| **energy_efficiency** | Low | Joules consumed per generated token on the Edge device. |
+
+## 8. Key Observations
+
+* **Reproducibility:** The table shows consistent results across two separate benchmark runs (Row 1 and Row 2), confirming the system's stability.
+* **Performance Note:** A `normalized_speedup` of 0.26-0.31 indicates that in this specific configuration (CPU-only), the overhead of the "Edge" model was higher than the gain. To see speedups > 1.0, run this on a machine with a dedicated GPU (CUDA).
+* **Acceptance Rate:** Both runs achieved ~60% acceptance rate, indicating the draft model's predictions are accepted 60% of the time.
+* **Throughput:** Average throughput of ~5.6-6.5 tokens/s achieved on CPU-only execution.
+
+---
+
+## 🎥 Screencast: Full Simulation of Single Node
+
+<video controls width="100%">
+  <source src="./assets/vidoes/Single_Node_Simulation.webm" type="video/webm">
+  Your browser does not support the video tag.
+</video>
+
+▶️ [Download screencast](./assets/vidoes/Single_Node_Simulation.webm)
+
+
+# Task 2: Hybrid Deployment (Distributed Cloud-Edge)
+
+## 1. Architecture Overview
+
+This benchmark evaluates a **Hybrid Cloud-Edge** architecture for Speculative Decoding. The system splits inference between a local "Edge" device (Drafting) and a remote "Cloud" server (Digital ocean droplet).
+
+### Infrastructure Components
+
+* **Edge Device (Client):**
+    * **Hardware:** Local Laptop with NVIDIA GPU (CUDA Enabled)
+    * **OS:** Linux (WSL2/Ubuntu)
+    * **Role:** Runs the `Ianvs` controller and the `Edge Worker` (Draft Model: GPT-2 Small)
+    * **Task:** Generates speculative tokens and sends them to the cloud for verification
+
+* **Cloud Server (Remote):**
+    * **Provider:** DigitalOcean (Basic Droplet)
+    * **OS:** Ubuntu 24.04 LTS
+    * **Specs:** 1 vCPU, 1GB RAM + **2GB Swap File** (Simulating a resource-constrained cloud environment)
+    * **Role:** Runs the `Cloud Server` (Verifier Model: GPT-2 Medium)
+
+## 2. Step-by-Step Implementation
+
+### A. Cloud Server Setup (DigitalOcean)
+
+1. **Provisioning:** Deployed a minimal Ubuntu droplet
+
+2. **Environment Setup:**
+    ```bash
+    apt install python3-pip python3-full
+    python3 -m venv venv
+    source venv/bin/activate
+    pip install flask torch transformers
+    ```
+
+3. **Solving Memory Constraints:**
+    The 1GB RAM was insufficient to load `gpt2-medium`, causing OOM kills. A 2GB Swap file was configured to allow the model to run on disk-backed memory, deliberately simulating a high-load/constrained environment.
+    ```bash
+    fallocate -l 2G /swapfile && mkswap /swapfile && swapon /swapfile
+    ```
+
+4. **Starting the Verifier Service:**
+    ```bash
+    python3 cloud_server.py
+    # Output: [INIT] Model Loaded. Ready to accept requests.
+    ```
+
+### B. Edge Device Setup (Local Laptop)
+
+1. **Secure Networking (SSH Tunneling):**
+    Instead of exposing the Flask server to the public internet, a secure SSH tunnel was established to forward traffic from `localhost:5000` to the remote server.
+    ```bash
+    ssh -L 5000:127.0.0.1:5000 -N -f root@142.93.209.154
+    ```
+
+2. **Ianvs Configuration:**
+    * **Endpoint:** Configured `algorithm.yaml` to target `http://127.0.0.1:5000` (Tunnel Endpoint)
+    * **Timeout Adjustment:** Increased `timeout` in `edge_worker.py` to **120s** to accommodate the high latency caused by the Cloud Server's swap memory usage
+    * **Bug Fix:** Patched `metrics.py` to include missing metric definitions (`latency`, `cloud_url`) that were previously causing crashes
+
+### C. Execution
+
+Executed the benchmark to process 5 samples from the WikiText dataset:
+```bash
+ianvs -f benchmarkingjob.yaml
+```
+
+## 3. Execution Evidence
+
+### Edge Worker Logs
+
+The logs confirm successful offloading of 5 distinct jobs to the cloud via the secure tunnel.
+
+```text
+(ianvs-screenshots) nishant@Development-arc:~/LOCAL_DISK_D/ianvs/examples/CloudEdgeSpecBench/Hybrid-Deployment$ ianvs -f benchmarkingjob.yaml
+[INIT] Edge Worker (Intern) on cuda
+[BENCHMARK] Sending 5 jobs to Cloud (Speed Mode)...
+[PROGRESS] Processing Sample 1/5...The attention mask is not set and cannot be inferred from input because pad token is same as eos token. As a consequence, you may observe unexpected behavior. Please pass your input's `attention_mask` to obtain reliable results.
+ Done. (45.80s)
+[PROGRESS] Processing Sample 2/5... Done. (44.33s)
+[PROGRESS] Processing Sample 3/5... Done. (43.62s)
+[PROGRESS] Processing Sample 4/5... Done. (43.66s)
+[PROGRESS] Processing Sample 5/5... Done. (46.45s)
+```
+
+### Final Results Table
+
+Ianvs successfully aggregated the metrics from multiple runs, demonstrating reproducibility.
+
+```text
++------+---------------------------+---------------------+---------------------+-----------------+-------------------+-------------------+--------------------+
+| rank |         algorithm         |  normalized_speedup |   throughput_tok_s  | acceptance_rate |      latency      | energy_efficiency |      paradigm      |
++------+---------------------------+---------------------+---------------------+-----------------+-------------------+-------------------+--------------------+
+|  1   | distributed_spec_decoding | 0.02233476782688853 | 0.46933875203571834 |       0.6       | 44.77324357032776 | 4477.324357032776 | singletasklearning |
+|  2   | distributed_spec_decoding |  0.0206794742693869 |  0.4350595878821212 |       0.6       | 48.35712876319885 | 4835.712876319885 | singletasklearning |
++------+---------------------------+---------------------+---------------------+-----------------+-------------------+-------------------+--------------------+
+[2026-02-05 16:44:08,123] benchmarking.py(39) [INFO] - benchmarkingjob runs successfully.
+```
+
+## 4. Key Observations
+
+* **Reproducibility:** The table shows consistent results across two separate benchmark runs (Row 1 and Row 2), confirming the system's stability in a distributed environment.
+* **Latency Analysis:** The average latency (~44-48 seconds) accurately reflects the extreme constraints of the cloud environment (1GB RAM + Swap). This validates the benchmark's ability to measure performance impact in resource-limited scenarios.
+* **Throughput:** The throughput (~0.43-0.47 tokens/s) is low due to the intentional bottleneck, proving that `normalized_speedup` correctly identifies when edge-only inference would be preferable to this specific cloud configuration.
+* **Network Overhead:** The significant increase in latency compared to the single-node deployment demonstrates the impact of network communication and remote inference in constrained environments.
+* **Acceptance Rate:** Both runs maintained 60% acceptance rate, consistent with the single-node deployment, showing the draft model's quality remains stable across deployment architectures.
+
+---
+
+## Conclusion
+
+This comprehensive benchmark demonstrates the Cloud-Edge Speculative Decoding system across two deployment scenarios:
+
+1. **Single-Node Deployment** achieved higher throughput (5.6-6.5 tokens/s) with lower latency (3-5 seconds) but still showed the overhead challenges of speculative decoding on CPU-only systems.
+
+2. **Hybrid Deployment** successfully validated the distributed architecture but revealed significant performance penalties (0.43-0.47 tokens/s, 44-48 seconds latency) when the cloud verifier operates under severe resource constraints.
+
+Both deployments maintained consistent 60% acceptance rates, demonstrating the robustness of the draft model across different execution environments. The results clearly highlight the importance of adequate cloud resources for effective cloud-edge collaboration in speculative decoding scenarios.
+
+## 🎥 Screencast: Full Simulation of Hybrid Node
+
+<video controls width="100%">
+  <source src="./assets/vidoes/Hybrid_Cloud_Edge_simulation.webm" type="video/webm">
+  Your browser does not support the video tag.
+</video>
+
+▶️ [Download screencast](./assets/vidoes/Hybrid_Cloud_Edge_simulation.webm)
