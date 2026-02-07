@@ -1,0 +1,4 @@
+rank,algorithm,latency,throughput_tok_s,ttft_ms,energy_efficiency,paradigm,basemodel,cloud_url,time,url
+1,baseline_cloud_only,29.659445428848265,0.678393132706834,0.0,2965.9445428848267,singletasklearning,cloud_only_baseline,http://127.0.0.1:5000,2026-02-07 23:27:53,./workspace_hybrid/baseline/baseline_benchmark/baseline_cloud_only/2c7e6ece-044e-11f1-be1c-7cb566cc3837
+2,baseline_cloud_only,32.74895510673523,0.6129288125831029,0.0,3274.895510673523,singletasklearning,cloud_only_baseline,http://127.0.0.1:5000,2026-02-07 23:21:18,./workspace_hybrid/baseline/baseline_benchmark/baseline_cloud_only/377fd17e-044d-11f1-a625-7cb566cc3837
+3,baseline_cloud_only,35.015578746795654,0.576628771829236,0.0,3501.5578746795654,singletasklearning,cloud_only_baseline,http://127.0.0.1:5000,2026-02-07 23:32:53,./workspace_hybrid/baseline/baseline_benchmark/baseline_cloud_only/cfe97d88-044e-11f1-8aa7-7cb566cc3837

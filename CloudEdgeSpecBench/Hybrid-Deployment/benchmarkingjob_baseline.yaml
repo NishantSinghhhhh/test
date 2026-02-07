@@ -1,0 +1,23 @@
+benchmarkingjob:
+  name: "baseline_benchmark"
+  workspace: "./workspace_hybrid/baseline"
+
+  testenv: "./testenv/testenv.yaml"  # SAME testenv
+
+  test_object:
+    type: "algorithms"
+    algorithms:
+      - name: "baseline_cloud_only"
+        url: "./testalgorithms/baseline/algorithm.yaml"
+
+  rank:
+    sort_by: [{ "throughput_tok_s": "descend" }]
+    visualization:
+      mode: "selected_only"
+      method: "print_table"
+    selected_dataitem:
+      paradigms: ["all"]
+      modules: ["all"]
+      metrics: ["latency", "throughput_tok_s", "ttft_ms", "energy_efficiency"]
+      hyperparameters: ["cloud_url"]
+    save_mode: "selected_and_all"

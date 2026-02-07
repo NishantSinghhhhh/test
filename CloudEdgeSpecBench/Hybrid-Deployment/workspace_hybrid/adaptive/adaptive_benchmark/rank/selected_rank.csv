@@ -1,0 +1,2 @@
+rank,algorithm,normalized_speedup,throughput_tok_s,acceptance_rate,latency,ttft_ms,draft_k,avg_rtt_ms,energy_efficiency,paradigm,basemodel,cloud_url,k_min,k_max,time,url
+1,adaptive_nasd,0.004517259252583783,0.09089613260349064,0.06999999999999999,221.37316989898682,65.45000076293945,9,10528.095704927835,22137.31698989868,singletasklearning,adaptive_k_worker,http://127.0.0.1:5000,,,2026-02-08 00:04:32,./workspace_hybrid/adaptive/adaptive_benchmark/adaptive_nasd/0fc42dac-0451-11f1-88bd-7cb566cc3837

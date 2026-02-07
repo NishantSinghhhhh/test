@@ -1,0 +1,2 @@
+rank,algorithm,cloud_url,latency,throughput_tok_s,avg_rtt_ms,draft_k,normalized_speedup,ttft_ms,acceptance_rate,energy_efficiency,paradigm,basemodel,basemodel-cloud_url,basemodel-draft_model,time,url
+1,speculative_fixed_k,http://127.0.0.1:5000,156.530042886734,0.12795326003872476,0.0,3,0.006388549964964908,39.971065521240234,0.06999999999999999,39132.5107216835,singletasklearning,edge_worker,http://127.0.0.1:5000,gpt2,2026-02-07 23:46:01,./workspace_hybrid/speculative/speculative_benchmark/speculative_fixed_k/3a90fa3a-044f-11f1-b751-7cb566cc3837

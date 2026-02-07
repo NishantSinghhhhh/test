@@ -1,11 +1,11 @@
 algorithm:
-  name: "speculative_fixed_k"
+  name: "distributed_spec_decoding"
   paradigm_type: "singletasklearning"
   
   modules:
     - type: "basemodel"
       name: "edge_worker"
-      url: "/home/nishant/LOCAL_DISK_D/ianvs/examples/CloudEdgeSpecBench/Hybrid-Deployment/testalgorithms/edge_worker.py"
+      url: "./testalgorithms/distributed_spec_decoding/edge_worker.py"
       class: "EdgeWorker"
       
       hyperparameters:
@@ -17,4 +17,4 @@ algorithm:
 
   hyperparameters:
     draft_k:
-      values: [3, 5]  # Test fixed K values
+      values: [1, 3, 5, 10]  # Test more K values

@@ -1,0 +1,16 @@
+algorithm:
+  name: "baseline_cloud_only"
+  paradigm_type: "singletasklearning"
+  
+  modules:
+    - type: "basemodel"
+      name: "cloud_only_baseline"
+      url: "/home/nishant/LOCAL_DISK_D/ianvs/examples/CloudEdgeSpecBench/Hybrid-Deployment/testalgorithms/baseline/cloud_only_scheduler.py"
+      class: "CloudOnlyScheduler"
+      
+      hyperparameters:
+        - target_model:
+            values: ["gpt2-medium"]
+        
+        - cloud_url:
+            values: ["http://127.0.0.1:5000"]
