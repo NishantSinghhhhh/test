@@ -1,0 +1,3 @@
+rank,algorithm,normalized_speedup,throughput_tok_s,acceptance_rate,latency,energy_efficiency,paradigm,edge_worker,draft_k,cloud_url,time,url
+1,distributed_spec_decoding,0.02233476782688853,0.46933875203571834,0.6,44.77324357032776,4477.324357032776,singletasklearning,,3,,2026-02-05 16:44:08,../workspace_hybrid/hybrid_cloud_edge_benchmark/distributed_spec_decoding/42fcac50-0283-11f1-86d2-7cb566cc3837
+2,distributed_spec_decoding,0.0206794742693869,0.4350595878821212,0.6,48.35712876319885,4835.712876319885,singletasklearning,,3,,2026-02-05 16:35:56,../workspace_hybrid/hybrid_cloud_edge_benchmark/distributed_spec_decoding/135dcbec-0282-11f1-86d2-7cb566cc3837

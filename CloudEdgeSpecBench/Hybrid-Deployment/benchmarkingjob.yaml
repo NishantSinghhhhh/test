@@ -1,8 +1,7 @@
 benchmarkingjob:
   name: "hybrid_cloud_edge_benchmark"
-  workspace: "../workspace_hybrid"  # Separate workspace for clean results
+  workspace: "../workspace_hybrid"
 
-  # Points to the REAL environment config
   testenv: "./testenv/real_wan_net/testenv.yaml"
 
   test_object:
@@ -13,12 +12,17 @@ benchmarkingjob:
 
   rank:
     sort_by: [ { "normalized_speedup": "descend" } ]
+    
     visualization:
       mode: "selected_only"
       method: "print_table"
 
     selected_dataitem:
+      # --- THESE WERE MISSING ---
+      paradigms: [ "all" ]
+      modules: [ "edge_worker" ]
+      # --------------------------
       metrics: [ "normalized_speedup", "throughput_tok_s", "acceptance_rate", "latency", "energy_efficiency" ]
-      hyperparameters: [ "draft_k", "cloud_ip" ]
+      hyperparameters: [ "draft_k", "cloud_url" ]
 
     save_mode: "selected_and_all"
