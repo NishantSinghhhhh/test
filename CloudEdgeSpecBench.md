@@ -66,83 +66,141 @@ ianvs -f benchmarkingjob.yaml
 ### Execution Logs
 
 ```text
-(ianvs-experiment) nishant@Development-arc:~/LOCAL_DISK_D/ianvs/examples/CloudEdgeSpecBench$ ianvs -f benchmarkingjob.yaml
+(ianvs-experiment) nishant@Development-arc:~/LOCAL_DISK_D/ianvs/examples/CloudEdgeSpecBench/Single-Node Emulation$ bash run_all_benchmarks.sh
+=========================================
+Single-Node Emulation Benchmark Suite
+Cloud-Edge Speculative Decoding
+=========================================
 
-[INIT] Device: CPU | K=3 | Ratio=1.0
-2026-02-02 19:11:15.248032: I tensorflow/stream_executor/platform/default/dso_loader.cc:50] Successfully opened dynamic library libcudart.so.12
+[1/4] Checking environment...
+✓ Environment check passed
+
+[2/4] Cleaning previous results...
+Found existing workspace directory
+Delete previous results? (y/n): y
+✓ Previous results cleaned
+
+[3/4] Running benchmarks...
+This will take approximately 15-30 minutes depending on your hardware
+
+=========================================
+[1/3] Running Baseline (Cloud-Only)
+=========================================
+
+
+[INIT] BaselineScheduler (Cloud-Only)
+  Device: cuda
+  Model: gpt2-medium
+[LOADING] Loading model...
+2026-02-08 12:43:28.443767: I tensorflow/stream_executor/platform/default/dso_loader.cc:50] Successfully opened dynamic library libcudart.so.12
 WARNING:tensorflow:Deprecation warnings have been disabled. Set TF_ENABLE_DEPRECATION_WARNINGS=1 to re-enable them.
-WARNING:root:Limited tf.compat.v2.summary API due to missing TensorBoard installation.
-/home/nishant/miniconda3/envs/ianvs-experiment/lib/python3.8/site-packages/torchvision/datapoints/__init__.py:12: UserWarning: The torchvision.datapoints and torchvision.transforms.v2 namespaces are still Beta. While we do not expect major breaking changes, some APIs may still change according to user feedback. Please submit any feedback you may have in this issue: https://github.com/pytorch/vision/issues/6753, and you can also check out https://github.com/pytorch/vision/issues/7319 to learn more about the APIs that we suspect might involve future changes. You can silence this warning by calling torchvision.disable_beta_transforms_warning().
-  warnings.warn(_BETA_TRANSFORMS_WARNING)
-/home/nishant/miniconda3/envs/ianvs-experiment/lib/python3.8/site-packages/torchvision/transforms/v2/__init__.py:54: UserWarning: The torchvision.datapoints and torchvision.transforms.v2 namespaces are still Beta. While we do not expect major breaking changes, some APIs may still change according to user feedback. Please submit any feedback you may have in this issue: https://github.com/pytorch/vision/issues/6753, and you can also check out https://github.com/pytorch/vision/issues/7319 to learn more about the APIs that we suspect might involve future changes. You can silence this warning by calling torchvision.disable_beta_transforms_warning().
-  warnings.warn(_BETA_TRANSFORMS_WARNING)
-[BENCHMARK] Processing 50 Samples...
+[READY] Model loaded successfully
+
+[BASELINE] Processing 50 samples...
 The attention mask is not set and cannot be inferred from input because pad token is same as eos token. As a consequence, you may observe unexpected behavior. Please pass your input's `attention_mask` to obtain reliable results.
-[1] TTFT: 335ms | Latency: 3.84s | Speed: 5.47 t/s
-[2] TTFT: 314ms | Latency: 3.23s | Speed: 6.50 t/s
-[3] TTFT: 238ms | Latency: 3.44s | Speed: 6.11 t/s
-[4] TTFT: 147ms | Latency: 2.84s | Speed: 7.40 t/s
-[5] TTFT: 259ms | Latency: 3.78s | Speed: 5.55 t/s
-[6] TTFT: 209ms | Latency: 4.42s | Speed: 4.76 t/s
-[7] TTFT: 245ms | Latency: 3.88s | Speed: 5.41 t/s
-[8] TTFT: 382ms | Latency: 4.23s | Speed: 4.96 t/s
-[9] TTFT: 170ms | Latency: 3.40s | Speed: 6.17 t/s
-[10] TTFT: 210ms | Latency: 3.28s | Speed: 6.41 t/s
-[11] TTFT: 225ms | Latency: 3.78s | Speed: 5.56 t/s
-[12] TTFT: 304ms | Latency: 3.81s | Speed: 5.51 t/s
-[13] TTFT: 359ms | Latency: 3.30s | Speed: 6.37 t/s
-[14] TTFT: 744ms | Latency: 4.29s | Speed: 4.90 t/s
-[15] TTFT: 268ms | Latency: 3.53s | Speed: 5.95 t/s
-[16] TTFT: 284ms | Latency: 4.52s | Speed: 4.65 t/s
-[17] TTFT: 152ms | Latency: 3.11s | Speed: 6.75 t/s
-[18] TTFT: 177ms | Latency: 3.69s | Speed: 5.69 t/s
-[19] TTFT: 209ms | Latency: 4.18s | Speed: 5.02 t/s
-[20] TTFT: 308ms | Latency: 3.90s | Speed: 5.38 t/s
-[21] TTFT: 557ms | Latency: 4.54s | Speed: 4.63 t/s
-[22] TTFT: 186ms | Latency: 3.85s | Speed: 5.46 t/s
-[23] TTFT: 205ms | Latency: 3.48s | Speed: 6.04 t/s
-[24] TTFT: 186ms | Latency: 3.29s | Speed: 6.39 t/s
-[25] TTFT: 199ms | Latency: 3.51s | Speed: 5.98 t/s
-[26] TTFT: 207ms | Latency: 4.27s | Speed: 4.92 t/s
-[27] TTFT: 268ms | Latency: 4.14s | Speed: 5.07 t/s
-[28] TTFT: 212ms | Latency: 4.12s | Speed: 5.10 t/s
-[29] TTFT: 251ms | Latency: 3.39s | Speed: 6.20 t/s
-[30] TTFT: 192ms | Latency: 3.28s | Speed: 6.40 t/s
-[31] TTFT: 184ms | Latency: 3.02s | Speed: 6.94 t/s
-[32] TTFT: 223ms | Latency: 3.50s | Speed: 6.00 t/s
-[33] TTFT: 195ms | Latency: 4.26s | Speed: 4.93 t/s
-[34] TTFT: 256ms | Latency: 3.15s | Speed: 6.67 t/s
-[35] TTFT: 188ms | Latency: 3.12s | Speed: 6.73 t/s
-[36] TTFT: 244ms | Latency: 4.24s | Speed: 4.95 t/s
-[37] TTFT: 269ms | Latency: 3.58s | Speed: 5.86 t/s
-[38] TTFT: 346ms | Latency: 3.38s | Speed: 6.22 t/s
-[39] TTFT: 375ms | Latency: 4.03s | Speed: 5.21 t/s
-[40] TTFT: 308ms | Latency: 5.78s | Speed: 3.63 t/s
-[41] TTFT: 2609ms | Latency: 6.80s | Speed: 3.09 t/s
-[42] TTFT: 217ms | Latency: 4.40s | Speed: 4.78 t/s
-[43] TTFT: 333ms | Latency: 3.91s | Speed: 5.37 t/s
-[44] TTFT: 172ms | Latency: 3.34s | Speed: 6.29 t/s
-[45] TTFT: 322ms | Latency: 3.67s | Speed: 5.73 t/s
-[46] TTFT: 286ms | Latency: 3.53s | Speed: 5.95 t/s
-[47] TTFT: 184ms | Latency: 3.14s | Speed: 6.68 t/s
-[48] TTFT: 1272ms | Latency: 5.07s | Speed: 4.14 t/s
-[49] TTFT: 238ms | Latency: 4.00s | Speed: 5.25 t/s
-[50] TTFT: 277ms | Latency: 3.82s | Speed: 5.50 t/s
+[5/50] Latency: 0.41s | Speed: 48.26 tok/s
+[10/50] Latency: 0.35s | Speed: 57.09 tok/s
+[15/50] Latency: 0.64s | Speed: 31.42 tok/s
+[20/50] Latency: 0.90s | Speed: 22.23 tok/s
+[25/50] Latency: 0.85s | Speed: 23.64 tok/s
+[30/50] Latency: 0.44s | Speed: 45.27 tok/s
+[35/50] Latency: 1.02s | Speed: 19.56 tok/s
+[40/50] Latency: 0.42s | Speed: 48.05 tok/s
+[45/50] Latency: 1.05s | Speed: 19.01 tok/s
+[50/50] Latency: 0.95s | Speed: 21.13 tok/s
+[COMPLETE] Processed all 50 samples
+
++------+---------------------+---------+-------------------+-------------------+--------------------+---------------------+---------------------+--------------------------------------------------------------------------------------------------------------+
+| rank |      algorithm      | latency |  throughput_tok_s | energy_efficiency |      paradigm      |      basemodel      |         time        |                                                     url                                                      |
++------+---------------------+---------+-------------------+-------------------+--------------------+---------------------+---------------------+--------------------------------------------------------------------------------------------------------------+
+|  1   | baseline_cloud_only |         | 32.44804669577011 |  184.80633020401  | singletasklearning | baseline_cloud_only | 2026-02-08 12:44:07 | ./workspace/baseline/single_node_baseline_benchmark/baseline_cloud_only/a7dba9be-04bd-11f1-88ca-7cb566cc3837 |
++------+---------------------+---------+-------------------+-------------------+--------------------+---------------------+---------------------+--------------------------------------------------------------------------------------------------------------+
+[2026-02-08 12:44:07,837] benchmarking.py(39) [INFO] - benchmarkingjob runs successfully.
+
+✓ Baseline complete
+
+=========================================
+[2/3] Running Speculative (Fixed K)
+=========================================
+[NETWORK] Initialized: RTT=50.0ms, BW=100.0Mbps, Jitter=±0.0ms, Concurrency=1
+
+[INIT] SpeculativeScheduler
+  Device: cuda
+  Draft: gpt2, Target: gpt2-medium
+  Draft K: 3
+  Network: RTT=50.0ms, BW=100.0Mbps, Jitter=±0.0ms
+[LOADING] Loading models...
+2026-02-08 12:44:13.981876: I tensorflow/stream_executor/platform/default/dso_loader.cc:50] Successfully opened dynamic library libcudart.so.12
+WARNING:tensorflow:Deprecation warnings have been disabled. Set TF_ENABLE_DEPRECATION_WARNINGS=1 to re-enable them.
+[READY] Models loaded successfully
+
+[BENCHMARK] Processing 50 samples...
+The attention mask is not set and cannot be inferred from input because pad token is same as eos token. As a consequence, you may observe unexpected behavior. Please pass your input's `attention_mask` to obtain reliable results.
+[5/50] TTFT: 93ms | Latency: 5.30s | Speed: 3.78 tok/s | Accept: 33.33%
+[10/50] TTFT: 94ms | Latency: 5.02s | Speed: 3.99 tok/s | Accept: 33.33%
+[15/50] TTFT: 94ms | Latency: 5.11s | Speed: 3.92 tok/s | Accept: 33.33%
+[20/50] TTFT: 96ms | Latency: 5.25s | Speed: 3.81 tok/s | Accept: 33.33%
+[25/50] TTFT: 94ms | Latency: 5.17s | Speed: 3.87 tok/s | Accept: 33.33%
+[30/50] TTFT: 96ms | Latency: 5.09s | Speed: 3.93 tok/s | Accept: 33.33%
+[35/50] TTFT: 97ms | Latency: 5.19s | Speed: 3.86 tok/s | Accept: 33.33%
+[40/50] TTFT: 102ms | Latency: 5.51s | Speed: 3.63 tok/s | Accept: 33.33%
+[45/50] TTFT: 98ms | Latency: 5.20s | Speed: 3.85 tok/s | Accept: 33.33%
+[50/50] TTFT: 109ms | Latency: 5.39s | Speed: 3.71 tok/s | Accept: 33.33%
+[COMPLETE] Processed all 50 samples
+
++------+----------------------+---------------------+-------------------+---------------------+--------------------+------------------+-------------------+---------------------+--------------------+--------------------+----------------------+---------+--------+----------------+-----------+-------------+---------------------+---------------------------------------------------------------------------------------------------------------------+
+| rank |      algorithm       |  normalized_speedup |  throughput_tok_s |   acceptance_rate   |      ttft_ms       |   p50_latency    |    p95_latency    |    stream_jitter    | energy_efficiency  |      paradigm      |      basemodel       | draft_k | rtt_ms | bandwidth_mbps | jitter_ms | concurrency |         time        |                                                         url                                                         |
++------+----------------------+---------------------+-------------------+---------------------+--------------------+------------------+-------------------+---------------------+--------------------+--------------------+----------------------+---------+--------+----------------+-----------+-------------+---------------------+---------------------------------------------------------------------------------------------------------------------+
+|  1   | speculative_decoding | 0.18953442179644547 | 3.796166243718218 | 0.33333333333333326 | 100.74180126190186 | 5.21658730506897 | 5.713256800174713 | 0.20484746698890538 | 1319.0216195583344 | singletasklearning | cloud_edge_scheduler |    3    |  50.0  |     100.0      |    0.0    |      1      | 2026-02-08 12:48:41 | ./workspace/speculative/single_node_speculative_benchmark/speculative_decoding/c3ec13e6-04bd-11f1-b707-7cb566cc3837 |
++------+----------------------+---------------------+-------------------+---------------------+--------------------+------------------+-------------------+---------------------+--------------------+--------------------+----------------------+---------+--------+----------------+-----------+-------------+---------------------+---------------------------------------------------------------------------------------------------------------------+
+[2026-02-08 12:48:41,449] benchmarking.py(39) [INFO] - benchmarkingjob runs successfully.
+
+✓ Speculative complete
+
+=========================================
+[3/3] Running Adaptive (NASD)
+=========================================
+[NETWORK] Initialized: RTT=50.0ms, BW=100.0Mbps, Jitter=±0.0ms, Concurrency=1
+
+[INIT] AdaptiveKScheduler (NASD)
+  Device: cuda
+  K Range: [1, 10]
+  Base Network: RTT=50.0ms, BW=100.0Mbps
+[LOADING] Loading models...
+2026-02-08 12:48:47.178278: I tensorflow/stream_executor/platform/default/dso_loader.cc:50] Successfully opened dynamic library libcudart.so.12
+WARNING:tensorflow:Deprecation warnings have been disabled. Set TF_ENABLE_DEPRECATION_WARNINGS=1 to re-enable them.
+[READY] Models loaded successfully
+
+[BENCHMARK] Processing 50 samples (Adaptive K)...
+The attention mask is not set and cannot be inferred from input because pad token is same as eos token. As a consequence, you may observe unexpected behavior. Please pass your input's `attention_mask` to obtain reliable results.
+[5/50] TTFT: 169ms | Latency: 6.80s | Speed: 2.94 tok/s | Accept: 16.67% | Avg K: 6.0
+[10/50] TTFT: 163ms | Latency: 6.39s | Speed: 3.13 tok/s | Accept: 17.70% | Avg K: 5.7
+[15/50] TTFT: 167ms | Latency: 6.48s | Speed: 3.09 tok/s | Accept: 17.54% | Avg K: 5.7
+[20/50] TTFT: 176ms | Latency: 6.82s | Speed: 2.93 tok/s | Accept: 16.53% | Avg K: 6.0
+[25/50] TTFT: 168ms | Latency: 6.67s | Speed: 3.00 tok/s | Accept: 16.67% | Avg K: 6.0
+[30/50] TTFT: 169ms | Latency: 6.34s | Speed: 3.15 tok/s | Accept: 18.52% | Avg K: 5.4
+[35/50] TTFT: 196ms | Latency: 6.95s | Speed: 2.88 tok/s | Accept: 18.35% | Avg K: 5.5
+[40/50] TTFT: 182ms | Latency: 7.36s | Speed: 2.72 tok/s | Accept: 16.67% | Avg K: 6.0
+[45/50] TTFT: 183ms | Latency: 7.28s | Speed: 2.75 tok/s | Accept: 16.67% | Avg K: 6.0
+[50/50] TTFT: 217ms | Latency: 7.53s | Speed: 2.66 tok/s | Accept: 16.39% | Avg K: 6.1
+[COMPLETE] Processed all 50 samples
+
++------+---------------+---------------------+--------------------+--------------------+-------------------+-------------------+-------------------+-------------------+-------------------+--------------------+--------------------+----------------------+---------+-------+-------+--------+----------------+-----------+-------------+---------------------+--------------------------------------------------------------------------------------------------------+
+| rank |   algorithm   |  normalized_speedup |  throughput_tok_s  |  acceptance_rate   |      ttft_ms      |    p50_latency    |    p95_latency    |   stream_jitter   | energy_efficiency |  avg_rtt_measured  |      paradigm      |      basemodel       | draft_k | k_min | k_max | rtt_ms | bandwidth_mbps | jitter_ms | concurrency |         time        |                                                  url                                                   |
++------+---------------+---------------------+--------------------+--------------------+-------------------+-------------------+-------------------+-------------------+-------------------+--------------------+--------------------+----------------------+---------+-------+-------+--------+----------------+-----------+-------------+---------------------+--------------------------------------------------------------------------------------------------------+
+|  1   | adaptive_nasd | 0.14434006041181371 | 2.9031641051196613 | 0.1695820837123309 | 182.8439235687256 | 6.816059470176697 | 7.920419144630431 | 0.545904464212436 | 1732.020890712738 | 128.20429641403314 | singletasklearning | adaptive_k_scheduler |    5    |       |       |  50.0  |     100.0      |    0.0    |      1      | 2026-02-08 12:54:37 | ./workspace/adaptive/single_node_adaptive_benchmark/adaptive_nasd/66c0288c-04be-11f1-90e2-7cb566cc3837 |
++------+---------------+---------------------+--------------------+--------------------+-------------------+-------------------+-------------------+-------------------+-------------------+--------------------+--------------------+----------------------+---------+-------+-------+--------+----------------+-----------+-------------+---------------------+--------------------------------------------------------------------------------------------------------+
+[2026-02-08 12:54:37,497] benchmarking.py(39) [INFO] - benchmarkingjob runs successfully.
+
+✓ Adaptive complete
+
+[4/4] Benchmark Summary
+=========================================
+All benchmarks completed successfully!
+Total time: 11m 19s
 ```
 
-## 6. Results Table
-
-```text
-+------+----------------------+--------------------+-------------------+--------------------+--------------------+--------------------+-------------------+--------------------+--------------------+--------------------+----------------------+---------+---------------+--------------+-------------+---------------------+-----------------------------------------------------------------------------------------------------------------+
-| rank |      algorithm       | normalized_speedup |  throughput_tok_s |  acceptance_rate   |      ttft_ms       |    p50_latency     |    p95_latency    |   stream_jitter    | energy_efficiency  |      paradigm      |      basemodel       | draft_k | compute_ratio | dataset_task | concurrency |         time        |                                                       url                                                       |
-+------+----------------------+--------------------+-------------------+--------------------+--------------------+--------------------+-------------------+--------------------+--------------------+--------------------+----------------------+---------+---------------+--------------+-------------+---------------------+-----------------------------------------------------------------------------------------------------------------+
-|  1   | speculative_decoding | 0.3094025221913644 | 6.509751975264081 | 0.5999999999999999 | 146.94523811340332 | 3.175128579139709  | 3.480122411251068 | 0.1443897696444878 | 323.2035708427429  | singletasklearning | cloud_edge_scheduler |    3    |      1.0      |      1       |      1      | 2026-02-02 19:05:54 | ./workspace/cloud_edge_speculative_decoding_benchmark/speculative_decoding/036917a2-003c-11f1-adcf-7cb566cc3837 |
-|  2   | speculative_decoding | 0.2603876229899036 | 5.613038843047288 | 0.6000000000000001 | 330.03888607025146 | 3.7809853553771973 | 4.829549539089202 | 0.6906462667972331 | 384.04283142089844 | singletasklearning | cloud_edge_scheduler |    3    |      1.0      |      1       |      1      | 2026-02-02 19:14:29 | ./workspace/cloud_edge_speculative_decoding_benchmark/speculative_decoding/d7849b6a-003c-11f1-ba66-7cb566cc3837 |
-+------+----------------------+--------------------+-------------------+--------------------+--------------------+--------------------+-------------------+--------------------+--------------------+--------------------+----------------------+---------+---------------+--------------+-------------+---------------------+-----------------------------------------------------------------------------------------------------------------+
-[2026-02-02 19:14:29,388] benchmarking.py(39) [INFO] - benchmarkingjob runs successfully.
-```
-
-## 7. Understanding the Results
+## 6. Understanding the Results
 
 | Metric | Goal | Interpretation |
 | --- | --- | --- |
@@ -151,7 +209,7 @@ The attention mask is not set and cannot be inferred from input because pad toke
 | **acceptance_rate** | `> 0.6` | If low, the "Intern" (Edge Model) is guessing wrong too often. |
 | **energy_efficiency** | Low | Joules consumed per generated token on the Edge device. |
 
-## 8. Key Observations
+## 7. Key Observations
 
 * **Reproducibility:** The table shows consistent results across two separate benchmark runs (Row 1 and Row 2), confirming the system's stability.
 * **Performance Note:** A `normalized_speedup` of 0.26-0.31 indicates that in this specific configuration (CPU-only), the overhead of the "Edge" model was higher than the gain. To see speedups > 1.0, run this on a machine with a dedicated GPU (CUDA).
@@ -160,9 +218,9 @@ The attention mask is not set and cannot be inferred from input because pad toke
 
 ---
 
-## 9. Screencast: Full Simulation of Single Node
+## 8. Screencast: Full Simulation of Single Node
 
-📹 **[Watch Single Node Deployment Screencast](https://drive.google.com/file/d/1GIBB_Xx639erUnlv8I7PJ13SXLyd7EwH/view?usp=sharing)**
+📹 **[Watch Single Node Deployment Screencast](https://drive.google.com/file/d/1njRMuLYYeBgH-2LfSB6PsAkJoIrYxrtG/view?usp=drive_link)**
 
 ---
 
@@ -239,32 +297,345 @@ ianvs -f benchmarkingjob.yaml
 The logs confirm successful offloading of 5 distinct jobs to the cloud via the secure tunnel.
 
 ```text
-(ianvs-screenshots) nishant@Development-arc:~/LOCAL_DISK_D/ianvs/examples/CloudEdgeSpecBench/Hybrid-Deployment$ ianvs -f benchmarkingjob.yaml
-[INIT] Edge Worker (Intern) on cuda
-[BENCHMARK] Sending 5 jobs to Cloud (Speed Mode)...
-[PROGRESS] Processing Sample 1/5...The attention mask is not set and cannot be inferred from input because pad token is same as eos token. As a consequence, you may observe unexpected behavior. Please pass your input's `attention_mask` to obtain reliable results.
- Done. (45.80s)
-[PROGRESS] Processing Sample 2/5... Done. (44.33s)
-[PROGRESS] Processing Sample 3/5... Done. (43.62s)
-[PROGRESS] Processing Sample 4/5... Done. (43.66s)
-[PROGRESS] Processing Sample 5/5... Done. (46.45s)
+(ianvs-experiment) nishant@Development-arc:~/LOCAL_DISK_D/ianvs/examples/CloudEdgeSpecBench/Hybrid-Deployment$ ./run_comparison.sh
+=========================================
+Cloud-Edge Benchmark Comparison
+=========================================
+
+[2/3] Running benchmarks...
+
+>>> [1/3] Baseline (Cloud-Only)...
+
+[INIT] Baseline Cloud-Only Scheduler
+  Target Model: gpt2-medium
+  Cloud Endpoint: http://127.0.0.1:5000
+
+[BASELINE] Processing 5 samples (Cloud-Only)...
+
+[1/5] Starting...
+  COMPLETE: 20 tokens | 31.58s | 0.63 tok/s
+
+[2/5] Starting...
+  COMPLETE: 20 tokens | 29.50s | 0.68 tok/s
+
+[3/5] Starting...
+  COMPLETE: 20 tokens | 29.02s | 0.69 tok/s
+
+[4/5] Starting...
+  COMPLETE: 20 tokens | 30.05s | 0.67 tok/s
+
+[5/5] Starting...
+  COMPLETE: 20 tokens | 33.91s | 0.59 tok/s
++------+---------------------+--------------------+--------------------+---------+--------------------+--------------------+---------------------+-----------------------+---------------------+---------------------------------------------------------------------------------------------------------+
+| rank |      algorithm      |      latency       |  throughput_tok_s  | ttft_ms | energy_efficiency  |      paradigm      |      basemodel      |       cloud_url       |         time        |                                                   url                                                   |
++------+---------------------+--------------------+--------------------+---------+--------------------+--------------------+---------------------+-----------------------+---------------------+---------------------------------------------------------------------------------------------------------+
+|  1   | baseline_cloud_only | 0.001439619064331  | 733.0924766253744  |   0.0   | 0.1439619064331054 | singletasklearning | cloud_only_baseline | http://127.0.0.1:5000 | 2026-02-08 13:13:59 | ./workspace_hybrid/baseline/baseline_benchmark/baseline_cloud_only/eb7a53e2-04c1-11f1-a893-7cb566cc3837 |
+|  2   | baseline_cloud_only | 0.0014522552490234 | 732.1681451138664  |   0.0   | 0.1452255249023437 | singletasklearning | cloud_only_baseline | http://127.0.0.1:5000 | 2026-02-08 13:12:10 | ./workspace_hybrid/baseline/baseline_benchmark/baseline_cloud_only/aa618132-04c1-11f1-82aa-7cb566cc3837 |
+|  3   | baseline_cloud_only | 0.0014538764953613 | 726.5826911507334  |   0.0   | 0.1453876495361328 | singletasklearning | cloud_only_baseline | http://127.0.0.1:5000 | 2026-02-08 13:14:35 | ./workspace_hybrid/baseline/baseline_benchmark/baseline_cloud_only/015e7a08-04c2-11f1-aca9-7cb566cc3837 |
+|  4   | baseline_cloud_only | 0.0014640808105468 |  725.441871156254  |   0.0   | 0.1464080810546875 | singletasklearning | cloud_only_baseline | http://127.0.0.1:5000 | 2026-02-08 13:13:23 | ./workspace_hybrid/baseline/baseline_benchmark/baseline_cloud_only/d6268af6-04c1-11f1-9f76-7cb566cc3837 |
+|  5   | baseline_cloud_only | 0.0015248298645019 | 696.4186195988067  |   0.0   | 0.1524829864501953 | singletasklearning | cloud_only_baseline | http://127.0.0.1:5000 | 2026-02-08 13:17:07 | ./workspace_hybrid/baseline/baseline_benchmark/baseline_cloud_only/5b6258c6-04c2-11f1-8071-7cb566cc3837 |
+|  6   | baseline_cloud_only | 29.659445428848265 | 0.678393132706834  |   0.0   | 2965.9445428848267 | singletasklearning | cloud_only_baseline | http://127.0.0.1:5000 | 2026-02-07 23:27:53 | ./workspace_hybrid/baseline/baseline_benchmark/baseline_cloud_only/2c7e6ece-044e-11f1-be1c-7cb566cc3837 |
+|  7   | baseline_cloud_only | 30.811269187927245 | 0.6511769646474532 |   0.0   | 3081.1269187927246 | singletasklearning | cloud_only_baseline | http://127.0.0.1:5000 | 2026-02-08 13:25:39 | ./workspace_hybrid/baseline/baseline_benchmark/baseline_cloud_only/313160f0-04c3-11f1-8d7b-7cb566cc3837 |
+|  8   | baseline_cloud_only | 32.74895510673523  | 0.6129288125831029 |   0.0   | 3274.895510673523  | singletasklearning | cloud_only_baseline | http://127.0.0.1:5000 | 2026-02-07 23:21:18 | ./workspace_hybrid/baseline/baseline_benchmark/baseline_cloud_only/377fd17e-044d-11f1-a625-7cb566cc3837 |
+|  9   | baseline_cloud_only | 35.015578746795654 | 0.576628771829236  |   0.0   | 3501.557874679565  | singletasklearning | cloud_only_baseline | http://127.0.0.1:5000 | 2026-02-07 23:32:53 | ./workspace_hybrid/baseline/baseline_benchmark/baseline_cloud_only/cfe97d88-044e-11f1-8aa7-7cb566cc3837 |
++------+---------------------+--------------------+--------------------+---------+--------------------+--------------------+---------------------+-----------------------+---------------------+---------------------------------------------------------------------------------------------------------+
+[2026-02-08 13:25:39,865] benchmarking.py(39) [INFO] - benchmarkingjob runs successfully.
+
+>>> [2/3] Speculative (Fixed K)...
+
+[INIT] Edge Worker on cuda
+  Draft Model: gpt2
+  Cloud Endpoint: http://127.0.0.1:5000
+  Draft K: 3
+'(ProtocolError('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer')), '(Request ID: 996eec92-3d67-48f1-a0b3-001a2cc016e7)')' thrown while requesting HEAD https://huggingface.co/gpt2/resolve/main/config.json
+Retrying in 1s [Retry 1/5].
+'(ProtocolError('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer')), '(Request ID: 1c2b50d0-4487-4acd-a767-6ec62b4cb826)')' thrown while requesting HEAD https://huggingface.co/gpt2/resolve/main/config.json
+Retrying in 2s [Retry 2/5].
+2026-02-08 13:25:53.272785: I tensorflow/stream_executor/platform/default/dso_loader.cc:50] Successfully opened dynamic library libcudart.so.12
+WARNING:tensorflow:Deprecation warnings have been disabled. Set TF_ENABLE_DEPRECATION_WARNINGS=1 to re-enable them.
+'(ProtocolError('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer')), '(Request ID: 6c35f66f-a472-425c-8c55-da2cc4c060e8)')' thrown while requesting HEAD https://huggingface.co/gpt2/resolve/main/generation_config.json
+Retrying in 1s [Retry 1/5].
+'(ProtocolError('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer')), '(Request ID: b7294baf-7d37-4afe-a9d9-319bfa6e3a29)')' thrown while requesting HEAD https://huggingface.co/gpt2/resolve/main/tokenizer_config.json
+Retrying in 1s [Retry 1/5].
+[INIT] Cloud server connected successfully!
+
+[BENCHMARK] Processing 5 samples...
+
+[1/5] Starting sample...
+The attention mask is not set and cannot be inferred from input because pad token is same as eos token. As a consequence, you may observe unexpected behavior. Please pass your input's `attention_mask` to obtain reliable results.
+  Request 1: Drafted 3 → Accepted 0 (0.0%) | Network: 6.38s
+  Request 2: Drafted 3 → Accepted 0 (0.0%) | Network: 7.22s
+  Request 3: Drafted 3 → Accepted 1 (33.3%) | Network: 7.32s
+  Request 4: Drafted 3 → Accepted 0 (0.0%) | Network: 7.37s
+  Request 5: Drafted 3 → Accepted 0 (0.0%) | Network: 7.55s
+  Request 6: Drafted 3 → Accepted 0 (0.0%) | Network: 7.70s
+  Request 7: Drafted 3 → Accepted 0 (0.0%) | Network: 7.30s
+  Request 8: Drafted 3 → Accepted 1 (33.3%) | Network: 7.10s
+  Request 9: Drafted 3 → Accepted 0 (0.0%) | Network: 7.46s
+  Request 10: Drafted 3 → Accepted 0 (0.0%) | Network: 7.08s
+  Request 11: Drafted 3 → Accepted 0 (0.0%) | Network: 7.27s
+  Request 12: Drafted 3 → Accepted 0 (0.0%) | Network: 7.06s
+  Request 13: Drafted 3 → Accepted 0 (0.0%) | Network: 7.75s
+  Request 14: Drafted 3 → Accepted 0 (0.0%) | Network: 7.51s
+  Request 15: Drafted 3 → Accepted 0 (0.0%) | Network: 7.32s
+  Request 16: Drafted 3 → Accepted 0 (0.0%) | Network: 7.40s
+  Request 17: Drafted 3 → Accepted 0 (0.0%) | Network: 6.81s
+  Request 18: Drafted 3 → Accepted 1 (33.3%) | Network: 7.11s
+  Request 19: Drafted 3 → Accepted 0 (0.0%) | Network: 7.25s
+  Request 20: Drafted 3 → Accepted 0 (0.0%) | Network: 7.56s
+
+  COMPLETE: 20 tokens in 148.36s (0.13 tok/s) | Overall Acceptance: 15.0%
+
+[2/5] Starting sample...
+  Request 1: Drafted 3 → Accepted 0 (0.0%) | Network: 7.05s
+  Request 2: Drafted 3 → Accepted 0 (0.0%) | Network: 7.39s
+  Request 3: Drafted 3 → Accepted 0 (0.0%) | Network: 7.55s
+  Request 4: Drafted 3 → Accepted 0 (0.0%) | Network: 6.97s
+  Request 5: Drafted 3 → Accepted 0 (0.0%) | Network: 7.29s
+  Request 6: Drafted 3 → Accepted 0 (0.0%) | Network: 7.60s
+  Request 7: Drafted 3 → Accepted 0 (0.0%) | Network: 7.13s
+  Request 8: Drafted 3 → Accepted 0 (0.0%) | Network: 6.80s
+  Request 9: Drafted 3 → Accepted 0 (0.0%) | Network: 6.69s
+  Request 10: Drafted 3 → Accepted 0 (0.0%) | Network: 7.51s
+  Request 11: Drafted 3 → Accepted 0 (0.0%) | Network: 7.11s
+  Request 12: Drafted 3 → Accepted 0 (0.0%) | Network: 7.17s
+  Request 13: Drafted 3 → Accepted 1 (33.3%) | Network: 7.17s
+  Request 14: Drafted 3 → Accepted 0 (0.0%) | Network: 7.75s
+  Request 15: Drafted 3 → Accepted 0 (0.0%) | Network: 7.41s
+  Request 16: Drafted 3 → Accepted 1 (33.3%) | Network: 6.85s
+  Request 17: Drafted 3 → Accepted 0 (0.0%) | Network: 7.14s
+  Request 18: Drafted 3 → Accepted 0 (0.0%) | Network: 7.53s
+  Request 19: Drafted 3 → Accepted 0 (0.0%) | Network: 9.69s
+  Request 20: Drafted 3 → Accepted 0 (0.0%) | Network: 8.95s
+
+  COMPLETE: 20 tokens in 151.20s (0.13 tok/s) | Overall Acceptance: 10.0%
+
+[3/5] Starting sample...
+  Request 1: Drafted 3 → Accepted 0 (0.0%) | Network: 8.64s
+  Request 2: Drafted 3 → Accepted 0 (0.0%) | Network: 8.07s
+  Request 3: Drafted 3 → Accepted 1 (33.3%) | Network: 8.66s
+  Request 4: Drafted 3 → Accepted 0 (0.0%) | Network: 8.19s
+  Request 5: Drafted 3 → Accepted 0 (0.0%) | Network: 8.50s
+  Request 6: Drafted 3 → Accepted 0 (0.0%) | Network: 8.36s
+  Request 7: Drafted 3 → Accepted 0 (0.0%) | Network: 8.40s
+  Request 8: Drafted 3 → Accepted 0 (0.0%) | Network: 8.24s
+  Request 9: Drafted 3 → Accepted 0 (0.0%) | Network: 7.78s
+  Request 10: Drafted 3 → Accepted 0 (0.0%) | Network: 7.67s
+  Request 11: Drafted 3 → Accepted 0 (0.0%) | Network: 8.09s
+  Request 12: Drafted 3 → Accepted 0 (0.0%) | Network: 8.15s
+  Request 13: Drafted 3 → Accepted 0 (0.0%) | Network: 8.53s
+  Request 14: Drafted 3 → Accepted 0 (0.0%) | Network: 7.76s
+  Request 15: Drafted 3 → Accepted 0 (0.0%) | Network: 7.89s
+  Request 16: Drafted 3 → Accepted 0 (0.0%) | Network: 7.97s
+  Request 17: Drafted 3 → Accepted 0 (0.0%) | Network: 7.63s
+  Request 18: Drafted 3 → Accepted 0 (0.0%) | Network: 7.18s
+  Request 19: Drafted 3 → Accepted 0 (0.0%) | Network: 7.00s
+  Request 20: Drafted 3 → Accepted 0 (0.0%) | Network: 7.70s
+
+  COMPLETE: 20 tokens in 163.00s (0.12 tok/s) | Overall Acceptance: 5.0%
+
+[4/5] Starting sample...
+  Request 1: Drafted 3 → Accepted 0 (0.0%) | Network: 7.33s
+  Request 2: Drafted 3 → Accepted 0 (0.0%) | Network: 7.05s
+  Request 3: Drafted 3 → Accepted 0 (0.0%) | Network: 7.01s
+  Request 4: Drafted 3 → Accepted 0 (0.0%) | Network: 7.65s
+  Request 5: Drafted 3 → Accepted 0 (0.0%) | Network: 7.50s
+  Request 6: Drafted 3 → Accepted 0 (0.0%) | Network: 7.76s
+  Request 7: Drafted 3 → Accepted 0 (0.0%) | Network: 7.14s
+  Request 8: Drafted 3 → Accepted 0 (0.0%) | Network: 7.40s
+  Request 9: Drafted 3 → Accepted 0 (0.0%) | Network: 7.16s
+  Request 10: Drafted 3 → Accepted 0 (0.0%) | Network: 7.34s
+  Request 11: Drafted 3 → Accepted 0 (0.0%) | Network: 7.16s
+  Request 12: Drafted 3 → Accepted 0 (0.0%) | Network: 7.35s
+  Request 13: Drafted 3 → Accepted 0 (0.0%) | Network: 10.71s
+  Request 14: Drafted 3 → Accepted 0 (0.0%) | Network: 9.73s
+  Request 15: Drafted 3 → Accepted 0 (0.0%) | Network: 8.67s
+  Request 16: Drafted 3 → Accepted 0 (0.0%) | Network: 9.92s
+  Request 17: Drafted 3 → Accepted 0 (0.0%) | Network: 7.32s
+  Request 18: Drafted 3 → Accepted 0 (0.0%) | Network: 7.28s
+  Request 19: Drafted 3 → Accepted 0 (0.0%) | Network: 7.52s
+  Request 20: Drafted 3 → Accepted 0 (0.0%) | Network: 7.82s
+
+  COMPLETE: 20 tokens in 159.30s (0.13 tok/s) | Overall Acceptance: 0.0%
+
+[5/5] Starting sample...
+  Request 1: Drafted 3 → Accepted 0 (0.0%) | Network: 7.62s
+  Request 2: Drafted 3 → Accepted 0 (0.0%) | Network: 7.83s
+  Request 3: Drafted 3 → Accepted 1 (33.3%) | Network: 8.35s
+  Request 4: Drafted 3 → Accepted 0 (0.0%) | Network: 7.84s
+  Request 5: Drafted 3 → Accepted 0 (0.0%) | Network: 8.06s
+  Request 6: Drafted 3 → Accepted 0 (0.0%) | Network: 8.30s
+  Request 7: Drafted 3 → Accepted 0 (0.0%) | Network: 7.68s
+  Request 8: Drafted 3 → Accepted 0 (0.0%) | Network: 7.81s
+  Request 9: Drafted 3 → Accepted 0 (0.0%) | Network: 7.79s
+  Request 10: Drafted 3 → Accepted 0 (0.0%) | Network: 8.30s
+  Request 11: Drafted 3 → Accepted 0 (0.0%) | Network: 8.25s
+  Request 12: Drafted 3 → Accepted 0 (0.0%) | Network: 7.87s
+  Request 13: Drafted 3 → Accepted 0 (0.0%) | Network: 7.65s
+  Request 14: Drafted 3 → Accepted 0 (0.0%) | Network: 7.45s
+  Request 15: Drafted 3 → Accepted 0 (0.0%) | Network: 7.58s
+  Request 16: Drafted 3 → Accepted 0 (0.0%) | Network: 7.56s
+  Request 17: Drafted 3 → Accepted 0 (0.0%) | Network: 7.83s
+  Request 18: Drafted 3 → Accepted 0 (0.0%) | Network: 7.94s
+  Request 19: Drafted 3 → Accepted 0 (0.0%) | Network: 8.05s
+  Request 20: Drafted 3 → Accepted 0 (0.0%) | Network: 8.39s
+
+  COMPLETE: 20 tokens in 160.77s (0.12 tok/s) | Overall Acceptance: 5.0%
++------+---------------------------+----------------------+---------------------+---------------------+--------------------+--------------------+--------------------+--------------------+-------------+---------+-----------------------+---------------------+---------------------------------------------------------------------------------------------------------------------+
+| rank |         algorithm         |  normalized_speedup  |   throughput_tok_s  |   acceptance_rate   |      latency       |      ttft_ms       | energy_efficiency  |      paradigm      |  basemodel  | draft_k |       cloud_url       |         time        |                                                         url                                                         |
++------+---------------------------+----------------------+---------------------+---------------------+--------------------+--------------------+--------------------+--------------------+-------------+---------+-----------------------+---------------------+---------------------------------------------------------------------------------------------------------------------+
+|  1   | distributed_spec_decoding |  8.181185495423238   |         0.0         |         0.0         | 0.1222316741943359 | 115.92750549316406 | 30.557918548583984 | singletasklearning | edge_worker |    3    | http://127.0.0.1:5000 | 2026-02-08 13:13:31 | ./workspace_hybrid/speculative/speculative_benchmark/distributed_spec_decoding/d9d17468-04c1-11f1-9a13-7cb566cc3837 |
+|  2   | distributed_spec_decoding |  8.064635464134778   |         0.0         |         0.0         | 0.1239981651306152 | 117.26536750793456 | 30.99954128265381  | singletasklearning | edge_worker |    3    | http://127.0.0.1:5000 | 2026-02-08 13:14:07 | ./workspace_hybrid/speculative/speculative_benchmark/distributed_spec_decoding/ef2ee6ba-04c1-11f1-8a91-7cb566cc3837 |
+|  3   | distributed_spec_decoding |  7.952803890182658   |         0.0         |         0.0         | 0.1257418155670166 | 119.25287246704102 | 31.43545389175415  | singletasklearning | edge_worker |    3    | http://127.0.0.1:5000 | 2026-02-08 13:14:57 | ./workspace_hybrid/speculative/speculative_benchmark/distributed_spec_decoding/04f60c9e-04c2-11f1-9ccc-7cb566cc3837 |
+|  4   | distributed_spec_decoding |  7.939246640166572   |         0.0         |         0.0         | 0.1259565353393554 | 119.19445991516112 | 31.489133834838867 | singletasklearning | edge_worker |    3    | http://127.0.0.1:5000 | 2026-02-08 13:12:19 | ./workspace_hybrid/speculative/speculative_benchmark/distributed_spec_decoding/ae6c2908-04c1-11f1-9fe5-7cb566cc3837 |
+|  5   | distributed_spec_decoding | 0.006388691822456524 | 0.12794616177993107 | 0.06999999999999999 | 156.52656722068787 |  92.5455093383789  | 39131.64180517197  | singletasklearning | edge_worker |    3    | http://127.0.0.1:5000 | 2026-02-08 13:39:07 | ./workspace_hybrid/speculative/speculative_benchmark/distributed_spec_decoding/91dc2d04-04c3-11f1-955d-7cb566cc3837 |
+|  6   |    speculative_fixed_k    |  0.0063885499649649  |  0.1279532600387247 |  0.0699999999999999 |  156.530042886734  | 39.97106552124024  |  39132.5107216835  | singletasklearning | edge_worker |    3    | http://127.0.0.1:5000 | 2026-02-07 23:46:01 |    ./workspace_hybrid/speculative/speculative_benchmark/speculative_fixed_k/3a90fa3a-044f-11f1-b751-7cb566cc3837    |
++------+---------------------------+----------------------+---------------------+---------------------+--------------------+--------------------+--------------------+--------------------+-------------+---------+-----------------------+---------------------+---------------------------------------------------------------------------------------------------------------------+
+[2026-02-08 13:39:07,074] benchmarking.py(39) [INFO] - benchmarkingjob runs successfully.
+
+>>> [3/3] Adaptive (NASD)...
+
+[INIT] Adaptive K Worker
+  K Range: [1, 10]
+  Cloud: http://127.0.0.1:5000
+2026-02-08 13:39:13.342371: I tensorflow/stream_executor/platform/default/dso_loader.cc:50] Successfully opened dynamic library libcudart.so.12
+WARNING:tensorflow:Deprecation warnings have been disabled. Set TF_ENABLE_DEPRECATION_WARNINGS=1 to re-enable them.
+
+[BENCHMARK] Processing 5 samples with Adaptive K...
+
+[1/5] Starting...
+The attention mask is not set and cannot be inferred from input because pad token is same as eos token. As a consequence, you may observe unexpected behavior. Please pass your input's `attention_mask` to obtain reliable results.
+  K=3 | RTT=6937ms | Accepted=0/3 (0.0%) | Next K=10
+  K=10 | RTT=9925ms | Accepted=0/10 (0.0%) | Next K=10
+  K=10 | RTT=8805ms | Accepted=1/10 (10.0%) | Next K=10
+  K=10 | RTT=9740ms | Accepted=0/10 (0.0%) | Next K=10
+  K=10 | RTT=8654ms | Accepted=0/10 (0.0%) | Next K=10
+  K=10 | RTT=9752ms | Accepted=0/10 (0.0%) | Next K=10
+  K=10 | RTT=9686ms | Accepted=0/10 (0.0%) | Next K=10
+  K=10 | RTT=8275ms | Accepted=1/10 (10.0%) | Next K=10
+  K=10 | RTT=8688ms | Accepted=0/10 (0.0%) | Next K=10
+  K=10 | RTT=10305ms | Accepted=0/10 (0.0%) | Next K=10
+  K=10 | RTT=10904ms | Accepted=0/10 (0.0%) | Next K=10
+  K=10 | RTT=14248ms | Accepted=0/10 (0.0%) | Next K=10
+  K=10 | RTT=11888ms | Accepted=0/10 (0.0%) | Next K=10
+  K=10 | RTT=12019ms | Accepted=0/10 (0.0%) | Next K=10
+  K=10 | RTT=12996ms | Accepted=0/10 (0.0%) | Next K=10
+  K=10 | RTT=11303ms | Accepted=0/10 (0.0%) | Next K=10
+  K=10 | RTT=11491ms | Accepted=0/10 (0.0%) | Next K=10
+  K=10 | RTT=10906ms | Accepted=1/10 (10.0%) | Next K=10
+  K=10 | RTT=10857ms | Accepted=0/10 (0.0%) | Next K=10
+  K=10 | RTT=11461ms | Accepted=0/10 (0.0%) | Next K=10
+
+  COMPLETE: 20 tokens | 0.09 tok/s | Avg K: 9.7 | Avg RTT: 9929ms
+
+[2/5] Starting...
+  K=10 | RTT=10330ms | Accepted=0/10 (0.0%) | Next K=10
+  K=10 | RTT=11579ms | Accepted=0/10 (0.0%) | Next K=10
+  K=10 | RTT=11912ms | Accepted=0/10 (0.0%) | Next K=10
+  K=10 | RTT=11103ms | Accepted=0/10 (0.0%) | Next K=10
+  K=10 | RTT=9650ms | Accepted=0/10 (0.0%) | Next K=10
+  K=10 | RTT=11871ms | Accepted=0/10 (0.0%) | Next K=10
+  K=10 | RTT=10275ms | Accepted=0/10 (0.0%) | Next K=10
+  K=10 | RTT=11394ms | Accepted=0/10 (0.0%) | Next K=10
+  K=10 | RTT=10261ms | Accepted=0/10 (0.0%) | Next K=10
+  K=10 | RTT=10123ms | Accepted=0/10 (0.0%) | Next K=10
+  K=10 | RTT=10608ms | Accepted=0/10 (0.0%) | Next K=10
+  K=10 | RTT=10365ms | Accepted=0/10 (0.0%) | Next K=10
+  K=10 | RTT=11766ms | Accepted=1/10 (10.0%) | Next K=10
+  K=10 | RTT=10275ms | Accepted=0/10 (0.0%) | Next K=10
+  K=10 | RTT=11157ms | Accepted=0/10 (0.0%) | Next K=10
+  K=10 | RTT=13827ms | Accepted=1/10 (10.0%) | Next K=10
+  K=10 | RTT=12849ms | Accepted=0/10 (0.0%) | Next K=10
+  K=10 | RTT=11455ms | Accepted=0/10 (0.0%) | Next K=10
+  K=10 | RTT=10273ms | Accepted=0/10 (0.0%) | Next K=10
+  K=10 | RTT=11854ms | Accepted=0/10 (0.0%) | Next K=10
+
+  COMPLETE: 20 tokens | 0.09 tok/s | Avg K: 10.0 | Avg RTT: 10526ms
+
+[3/5] Starting...
+  K=10 | RTT=11006ms | Accepted=0/10 (0.0%) | Next K=10
+  K=10 | RTT=9977ms | Accepted=0/10 (0.0%) | Next K=10
+  K=10 | RTT=10672ms | Accepted=1/10 (10.0%) | Next K=10
+  K=10 | RTT=13161ms | Accepted=0/10 (0.0%) | Next K=10
+  K=10 | RTT=12422ms | Accepted=0/10 (0.0%) | Next K=10
+  K=10 | RTT=10773ms | Accepted=0/10 (0.0%) | Next K=10
+  K=10 | RTT=11119ms | Accepted=0/10 (0.0%) | Next K=10
+  K=10 | RTT=10277ms | Accepted=0/10 (0.0%) | Next K=10
+  K=10 | RTT=10762ms | Accepted=0/10 (0.0%) | Next K=10
+  K=10 | RTT=11894ms | Accepted=0/10 (0.0%) | Next K=10
+  K=10 | RTT=11445ms | Accepted=0/10 (0.0%) | Next K=10
+  K=10 | RTT=10018ms | Accepted=0/10 (0.0%) | Next K=10
+  K=10 | RTT=12794ms | Accepted=0/10 (0.0%) | Next K=10
+  K=10 | RTT=12194ms | Accepted=0/10 (0.0%) | Next K=10
+  K=10 | RTT=11377ms | Accepted=0/10 (0.0%) | Next K=10
+  K=10 | RTT=12154ms | Accepted=0/10 (0.0%) | Next K=10
+  K=10 | RTT=11705ms | Accepted=0/10 (0.0%) | Next K=10
+  K=10 | RTT=11450ms | Accepted=0/10 (0.0%) | Next K=10
+  K=10 | RTT=10286ms | Accepted=0/10 (0.0%) | Next K=10
+  K=10 | RTT=10283ms | Accepted=0/10 (0.0%) | Next K=10
+
+  COMPLETE: 20 tokens | 0.09 tok/s | Avg K: 10.0 | Avg RTT: 10803ms
+
+[4/5] Starting...
+  K=10 | RTT=10922ms | Accepted=0/10 (0.0%) | Next K=10
+  K=10 | RTT=12290ms | Accepted=0/10 (0.0%) | Next K=10
+  K=10 | RTT=12126ms | Accepted=0/10 (0.0%) | Next K=10
+  K=10 | RTT=10469ms | Accepted=0/10 (0.0%) | Next K=10
+  K=10 | RTT=12062ms | Accepted=0/10 (0.0%) | Next K=10
+  K=10 | RTT=11976ms | Accepted=0/10 (0.0%) | Next K=10
+  K=10 | RTT=11798ms | Accepted=0/10 (0.0%) | Next K=10
+  K=10 | RTT=11161ms | Accepted=0/10 (0.0%) | Next K=10
+  K=10 | RTT=11272ms | Accepted=0/10 (0.0%) | Next K=10
+  K=10 | RTT=10844ms | Accepted=0/10 (0.0%) | Next K=10
+  K=10 | RTT=13313ms | Accepted=0/10 (0.0%) | Next K=10
+  K=10 | RTT=12653ms | Accepted=0/10 (0.0%) | Next K=10
+  K=10 | RTT=12721ms | Accepted=0/10 (0.0%) | Next K=10
+  K=10 | RTT=10965ms | Accepted=0/10 (0.0%) | Next K=10
+  K=10 | RTT=11438ms | Accepted=0/10 (0.0%) | Next K=10
+  K=10 | RTT=11707ms | Accepted=0/10 (0.0%) | Next K=10
+  K=10 | RTT=14146ms | Accepted=0/10 (0.0%) | Next K=10
+  K=10 | RTT=11262ms | Accepted=0/10 (0.0%) | Next K=10
+  K=10 | RTT=14274ms | Accepted=0/10 (0.0%) | Next K=10
+  K=10 | RTT=12472ms | Accepted=0/10 (0.0%) | Next K=10
+
+  COMPLETE: 20 tokens | 0.08 tok/s | Avg K: 10.0 | Avg RTT: 11050ms
+
+[5/5] Starting...
+  K=10 | RTT=13337ms | Accepted=0/10 (0.0%) | Next K=10
+  K=10 | RTT=15128ms | Accepted=0/10 (0.0%) | Next K=10
+  K=10 | RTT=13404ms | Accepted=1/10 (10.0%) | Next K=10
+  K=10 | RTT=14846ms | Accepted=0/10 (0.0%) | Next K=10
+  K=10 | RTT=14127ms | Accepted=0/10 (0.0%) | Next K=10
+  K=10 | RTT=13676ms | Accepted=0/10 (0.0%) | Next K=10
+  K=10 | RTT=13263ms | Accepted=0/10 (0.0%) | Next K=10
+  K=10 | RTT=10458ms | Accepted=0/10 (0.0%) | Next K=10
+  K=10 | RTT=10382ms | Accepted=0/10 (0.0%) | Next K=10
+  K=10 | RTT=13250ms | Accepted=0/10 (0.0%) | Next K=10
+  K=10 | RTT=16624ms | Accepted=0/10 (0.0%) | Next K=10
+  K=10 | RTT=15620ms | Accepted=0/10 (0.0%) | Next K=10
+  K=10 | RTT=11514ms | Accepted=0/10 (0.0%) | Next K=10
+  K=10 | RTT=14373ms | Accepted=0/10 (0.0%) | Next K=10
+  K=10 | RTT=13383ms | Accepted=0/10 (0.0%) | Next K=10
+  K=10 | RTT=11054ms | Accepted=0/10 (0.0%) | Next K=10
+  K=10 | RTT=11709ms | Accepted=0/10 (0.0%) | Next K=10
+  K=10 | RTT=10809ms | Accepted=0/10 (0.0%) | Next K=10
+  K=10 | RTT=11403ms | Accepted=0/10 (0.0%) | Next K=10
+  K=10 | RTT=10382ms | Accepted=0/10 (0.0%) | Next K=10
+
+  COMPLETE: 20 tokens | 0.08 tok/s | Avg K: 10.0 | Avg RTT: 11458ms
++------+---------------+----------------------+---------------------+---------------------+-------------------+--------------------+---------+--------------------+-------------------+--------------------+-------------------+-----------------------+-------+-------+---------------------+---------------------------------------------------------------------------------------------------+
+| rank |   algorithm   |  normalized_speedup  |   throughput_tok_s  |   acceptance_rate   |      latency      |      ttft_ms       | draft_k |     avg_rtt_ms     | energy_efficiency |      paradigm      |     basemodel     |       cloud_url       | k_min | k_max |         time        |                                                url                                                |
++------+---------------+----------------------+---------------------+---------------------+-------------------+--------------------+---------+--------------------+-------------------+--------------------+-------------------+-----------------------+-------+-------+---------------------+---------------------------------------------------------------------------------------------------+
+|  1   | adaptive_nasd |  0.0045172592525837  |  0.0908961326034906 |  0.0699999999999999 | 221.3731698989868 | 65.45000076293945  |    9    | 10528.095704927837 | 22137.31698989868 | singletasklearning | adaptive_k_worker | http://127.0.0.1:5000 |       |       | 2026-02-08 00:04:32 | ./workspace_hybrid/adaptive/adaptive_benchmark/adaptive_nasd/0fc42dac-0451-11f1-88bd-7cb566cc3837 |
+|  2   | adaptive_nasd | 0.004200229860697125 | 0.08438414957381898 | 0.06999999999999999 | 238.0822081565857 | 182.43823051452637 |    9    | 10753.171905297113 | 23808.22081565857 | singletasklearning | adaptive_k_worker | http://127.0.0.1:5000 |       |       | 2026-02-08 13:59:06 | ./workspace_hybrid/adaptive/adaptive_benchmark/adaptive_nasd/7257f646-04c5-11f1-9f4c-7cb566cc3837 |
++------+---------------+----------------------+---------------------+---------------------+-------------------+--------------------+---------+--------------------+-------------------+--------------------+-------------------+-----------------------+-------+-------+---------------------+---------------------------------------------------------------------------------------------------+
+[2026-02-08 13:59:06,374] benchmarking.py(39) [INFO] - benchmarkingjob runs successfully.
+
+✓ Complete! Check workspace_hybrid/comparison_report.csv
+(ianvs-experiment) nishant@Development-
 ```
 
-### Final Results Table
-
-Ianvs successfully aggregated the metrics from multiple runs, demonstrating reproducibility.
-
-```text
-+------+---------------------------+---------------------+---------------------+-----------------+-------------------+-------------------+--------------------+
-| rank |         algorithm         |  normalized_speedup |   throughput_tok_s  | acceptance_rate |      latency      | energy_efficiency |      paradigm      |
-+------+---------------------------+---------------------+---------------------+-----------------+-------------------+-------------------+--------------------+
-|  1   | distributed_spec_decoding | 0.02233476782688853 | 0.46933875203571834 |       0.6       | 44.77324357032776 | 4477.324357032776 | singletasklearning |
-|  2   | distributed_spec_decoding |  0.0206794742693869 |  0.4350595878821212 |       0.6       | 48.35712876319885 | 4835.712876319885 | singletasklearning |
-+------+---------------------------+---------------------+---------------------+-----------------+-------------------+-------------------+--------------------+
-[2026-02-05 16:44:08,123] benchmarking.py(39) [INFO] - benchmarkingjob runs successfully.
-```
-
-## 4. Key Observations
+## 3. Key Observations
 
 * **Reproducibility:** The table shows consistent results across two separate benchmark runs (Row 1 and Row 2), confirming the system's stability in a distributed environment.
 * **Latency Analysis:** The average latency (~44-48 seconds) accurately reflects the extreme constraints of the cloud environment (1GB RAM + Swap). This validates the benchmark's ability to measure performance impact in resource-limited scenarios.
@@ -274,9 +645,9 @@ Ianvs successfully aggregated the metrics from multiple runs, demonstrating repr
 
 ---
 
-## 5. Screencast: Full Simulation of Hybrid Node
+## 4. Screencast: Full Simulation of Hybrid Node
 
-📹 **[Watch Hybrid Deployment Screencast](https://drive.google.com/file/d/1eNbhNvzU8R4-xH9K0R6dsbceW8Yrjj7V/view?usp=sharing)**
+📹 **[Watch Hybrid Deployment Screencast](https://drive.google.com/file/d/16Q-aL5xNylMZSpK3Huv5Zy2hdIyMjrD5/view?usp=drive_link)**
 
 ---
 
