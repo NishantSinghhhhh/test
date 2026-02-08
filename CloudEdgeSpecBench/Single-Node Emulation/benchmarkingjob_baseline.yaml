@@ -1,0 +1,55 @@
+# Benchmarking Job Configuration: Baseline (Cloud-Only)
+# Tests pure cloud inference without edge speculation
+
+benchmarkingjob:
+  # ================================================================
+  # JOB IDENTIFICATION
+  # ================================================================
+  name: "single_node_baseline_benchmark"
+  
+  # Workspace directory for baseline results
+  workspace: "./workspace/baseline"
+
+  # ================================================================
+  # TEST ENVIRONMENT
+  # ================================================================
+  testenv: "./testenv/cloud_edge_net/testenv.yaml"
+
+  # ================================================================
+  # ALGORITHM TO BENCHMARK
+  # ================================================================
+  test_object:
+    type: "algorithms"
+    algorithms:
+      - name: "baseline_cloud_only"
+        url: "./testalgorithms/baseline/algorithm.yaml"
+
+  # ================================================================
+  # RESULT RANKING & VISUALIZATION
+  # ================================================================
+  rank:
+    # Sorting criteria
+    sort_by: 
+      - { "throughput_tok_s": "descend" }  # Higher throughput is better
+
+    # Visualization configuration
+    visualization:
+      mode: "selected_only"
+      method: "print_table"
+
+    # Selected data items for final report
+    selected_dataitem:
+      paradigms: [ "all" ]
+      modules: [ "all" ]
+      
+      # Hyperparameters (baseline has minimal params)
+      hyperparameters: []
+        
+      # Metrics to show
+      metrics: 
+        - "latency"
+        - "throughput_tok_s"
+        - "energy_efficiency"
+
+    # Save configuration
+    save_mode: "selected_and_all"
