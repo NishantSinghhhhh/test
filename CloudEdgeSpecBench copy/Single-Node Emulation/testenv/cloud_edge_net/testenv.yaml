@@ -1,0 +1,108 @@
+# Test Environment Configuration
+# Defines network scenarios and metrics for cloud-edge benchmarking
+
+testenv:
+  # Dataset configuration
+  dataset:
+    # Note: Update these paths to match your actual dataset location
+    train_index: "/home/nishant/LOCAL_DISK_D/ianvs/examples/CloudEdgeSpecBench/dataset/test_data.txt"
+    test_index: "/home/nishant/LOCAL_DISK_D/ianvs/examples/CloudEdgeSpecBench/dataset/test_data.txt"
+    format: "txt"
+  
+  # Environment type
+  type: "cloud_edge_simulator"
+  
+  # Network Scenarios (Grid Search)
+  # Each scenario represents a different network condition
+  scenarios:
+    # Scenario 1: Ideal Fiber (Low latency, high bandwidth, no jitter)
+    - name: "fiber_ideal"
+      parameters:
+        simulation_mode: "emulator"
+        rtt_ms: 10
+        bandwidth_mbps: 1000
+        jitter_ms: 0
+        concurrency: 1
+    
+    # Scenario 2: Good 5G (Moderate latency, good bandwidth, minimal jitter)
+    - name: "5g_good"
+      parameters:
+        simulation_mode: "emulator"
+        rtt_ms: 40
+        bandwidth_mbps: 500
+        jitter_ms: 5
+        concurrency: 1
+    
+    # Scenario 3: Typical 4G (Higher latency, moderate bandwidth, some jitter)
+    - name: "4g_typical"
+      parameters:
+        simulation_mode: "emulator"
+        rtt_ms: 100
+        bandwidth_mbps: 50
+        jitter_ms: 20
+        concurrency: 1
+    
+    # Scenario 4: Congested 4G (High latency, low bandwidth, high jitter, concurrent load)
+    - name: "4g_congested"
+      parameters:
+        simulation_mode: "emulator"
+        rtt_ms: 200
+        bandwidth_mbps: 10
+        jitter_ms: 50
+        concurrency: 5
+  
+  # Performance Metrics
+  # These are computed for each benchmark run
+  metrics:
+    # Core Performance Metrics
+    - name: "normalized_speedup"
+      url: "./testenv/cloud_edge_net/metrics.py"
+    
+    - name: "throughput_tok_s"
+      url: "./testenv/cloud_edge_net/metrics.py"
+    
+    - name: "acceptance_rate"
+      url: "./testenv/cloud_edge_net/metrics.py"
+    
+    # Responsiveness Metrics
+    - name: "ttft_ms"
+      url: "./testenv/cloud_edge_net/metrics.py"
+    
+    # Latency Metrics
+    - name: "p50_latency"
+      url: "./testenv/cloud_edge_net/metrics.py"
+    
+    - name: "p95_latency"
+      url: "./testenv/cloud_edge_net/metrics.py"
+    
+    - name: "stream_jitter"
+      url: "./testenv/cloud_edge_net/metrics.py"
+    
+    # Resource Metrics
+    - name: "energy_efficiency"
+      url: "./testenv/cloud_edge_net/metrics.py"
+    
+    # Hyperparameter Pass-Through (for results table)
+    - name: "draft_k"
+      url: "./testenv/cloud_edge_net/metrics.py"
+    
+    - name: "compute_ratio"
+      url: "./testenv/cloud_edge_net/metrics.py"
+    
+    - name: "dataset_task"
+      url: "./testenv/cloud_edge_net/metrics.py"
+    
+    - name: "concurrency"
+      url: "./testenv/cloud_edge_net/metrics.py"
+    
+    - name: "rtt_ms"
+      url: "./testenv/cloud_edge_net/metrics.py"
+    
+    - name: "bandwidth_mbps"
+      url: "./testenv/cloud_edge_net/metrics.py"
+    
+    - name: "jitter_ms"
+      url: "./testenv/cloud_edge_net/metrics.py"
+
+    - name: "avg_rtt_measured"
+      url: "./testenv/cloud_edge_net/metrics.py"

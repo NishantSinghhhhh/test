@@ -1,0 +1,37 @@
+# Algorithm Configuration: Baseline (Cloud-Only)
+# Provides baseline comparison for speculative decoding
+
+algorithm:
+  name: "baseline_cloud_only"
+  paradigm_type: "singletasklearning"
+  
+  # Module configuration
+  modules:
+    - type: "basemodel"
+      name: "baseline_cloud_only"
+      url: "./testalgorithms/baseline/baseline_scheduler.py"
+      class: "BaselineScheduler"
+      
+      hyperparameters:
+        # ================================================================
+        # MODEL CONFIGURATION
+        # ================================================================
+        - target_model:
+            values: ["gpt2-medium"]  # Same as speculative decoding target
+        
+        # ================================================================
+        # REPRODUCIBILITY
+        # ================================================================
+        - random_seed:
+            values: [42]  # Fixed seed for deterministic results
+        
+        - do_sample:
+            values: [false]  # Greedy decoding (deterministic)
+
+  # Global hyperparameters
+  hyperparameters:
+    compute_ratio:
+      values: [0.0]  # N/A for baseline
+    
+    dataset_task:
+      values: ["WikiText"]  # Task type

@@ -1,0 +1,22 @@
+algorithm:
+  name: "adaptive_nasd"
+  paradigm_type: "singletasklearning"
+  
+  modules:
+    - type: "basemodel"
+      name: "adaptive_k_worker"
+      url:  "/home/nishant/LOCAL_DISK_D/ianvs/examples/CloudEdgeSpecBench/Hybrid-Deployment/testalgorithms/adaptive_spec_decoding/adaptive_k_worker.py"
+      class: "AdaptiveKWorker"
+      
+      hyperparameters:
+        - cloud_url:
+            values: ["http://127.0.0.1:5000"]
+        
+        - draft_model:
+            values: ["gpt2"]
+        
+        - k_min:
+            values: [1]
+        
+        - k_max:
+            values: [10]
