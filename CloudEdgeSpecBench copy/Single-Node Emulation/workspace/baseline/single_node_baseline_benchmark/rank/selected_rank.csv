@@ -1,2 +1,0 @@
-rank,algorithm,latency,throughput_tok_s,energy_efficiency,paradigm,basemodel,time,url
-1,baseline_cloud_only,,32.44804669577011,184.80633020401,singletasklearning,baseline_cloud_only,2026-02-08 12:44:07,./workspace/baseline/single_node_baseline_benchmark/baseline_cloud_only/a7dba9be-04bd-11f1-88ca-7cb566cc3837
